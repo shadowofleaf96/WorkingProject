@@ -1,0 +1,49 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+    align-items: center;
+    background-color: white }
+
+.btitle {
+    font-size: 25px;
+    font-weight: bolder;
+    color: black; 
+    text-align: center;
+}
+
+.sign-upform {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    align-items: center;
+    background-color: whitesmoke;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+}
+.forminfos {
+    font-size: 15px;
+    color: black;
+    text-align: center;
+}
+.labelandinputs {
+    margin-bottom: 20px;
+    font-weight: lighter;
+    font-size: 14px;
+    color: black;
+    text-align: center;
+}
+#email {
+    margin-left: 13px;
+}
+
+#bregister {
+    width: 130px;
+    height: 30px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
