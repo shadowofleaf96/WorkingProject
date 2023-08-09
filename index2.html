@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Example Website 2</title>
+    <style>
+        .bigger-tr {
+            height: 50px; /* Adjust the desired height in pixels */
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <fieldset>
+          <legend>Personal Details</legend>
+          <label for="salutation">Salutation</label><br>
+          <select id="salutation" name="salutation">
+            <option value="none">--None--</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Ms.">Ms.</option>
+          </select>
+          <br></br>
+          <label for="fname">First name:</label>
+          <input type="text" id="fname" name="fname" hint="firstn" value=""><br></br>
+          <label for="lname">Last name:</label>
+          <input type="text" id="lname" name="lname" hint="lastn" value=""><br></br>
+          <div>
+            <label for="gender">Gender</label>
+            <input type="radio" id="genderf" name="genderf" value="genderf"/>
+            <label for="genderf">Female</label>
+            <input type="radio" id="genderm" name="genderm" value="genderm"/>
+            <label for="genderm">Male</label>
+          </div>
+          <br></br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" hint="email" value=""><br><br>
+          <div>
+          <label for="birthd">Date of Birth:</label><br>
+          <input type="date" id="birthd"  name="birthd" value="dd/mm/yyyy"><br>
+        </div>
+        <br></br>
+        <div>
+          <label for="address">Address:</label><br>
+          <textarea style="width: 400px; height: 100px;" type="text" tabindex="3" id="birthd"  name="birthd" value=""></textarea><br>
+        </div>
+        <br></br>
+        <input type="submit" value="Submit">
+        </fieldset>
+      </form>
+</body>
