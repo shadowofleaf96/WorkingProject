@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+
+body {
+  height: 100%;
+  font-family: "SFProDisplayRegular", sans-serif;
+  background-color: #f0f2f5;
+}
+
+input {
+  border: 2px solid #dddfe2;
+  border-radius: 5px;
+  color: #1d2129;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 16px;
+  border-style: solid;
+  border-width: 2px;
+  padding: 0 8px;
+  display: inline-block;
+  text-indent: 10px;
+  margin-top: 15px;
+  height: 55px;
+  width: 90%;
+}
+
+.loginform {
+  height: 39%;
+  width: 21%;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+  display: inline-block;
+  position: absolute;
+  top: 33%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.right {
+  position: absolute;
+  top: 28%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+#facebookpres {
+  padding-left: 35px;
+}
+
+#para {
+  font-family: Helvetica, Arial, sans-serif;
+  position: relative;
+  bottom: 0;
+}
+
+.right h2 {
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 32px;
+  width: 500px;
+}
+
+#facebooklogo {
+  height: 130px;
+}
+
+#hr {
+  border-bottom: 1px solid #dadde1;
+}
+
+@font-face { font-family: SFProDisplayRegular; src: url('SFProDisplayRegular.otf'); } 
+
+
+#login {
+  height: 55px;
+  width: 90%;
+  font-size: 23px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-bottom: 32px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1877f2;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+#forgot{
+    text-decoration: none;
+}
+
+#register {
+  height: 55px;
+  width: 48%;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline;
+  box-sizing: border-box;
+  margin-bottom: 32px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #42b72a;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
