@@ -24,75 +24,78 @@ input {
   display: inline-block;
   text-indent: 10px;
   margin-top: 15px;
-  height: 55px;
-  width: 90%;
+  height: 3.2em;
+  width: 92%;
 }
 
 .loginform {
-  height: 39%;
-  width: 21%;
+  height: auto;
+  width: 23vw;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
   display: inline-block;
-  position: absolute;
-  top: 33%;
-  left: 65%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  margin-top: 13%;
+  margin-left: 54.7%;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: white;
 }
 
 .right {
-  position: absolute;
-  top: 28%;
-  left: 35%;
-  transform: translate(-50%, -50%);
-  display: inline-block;
+  position: fixed;
+  margin-top: 17%;
+  margin-left: 20%;
 }
 
 #facebookpres {
-  padding-left: 35px;
+  padding-left: 5%;
+}
+
+#forgot{
+  font-family: Helvetica;
+  font-weight: lighter;
+  color: #1877f2;
 }
 
 #para {
-  font-family: Helvetica, Arial, sans-serif;
-  position: relative;
-  bottom: 0;
+  font-family: Helvetica;
+  display:inline-block;
+  margin-top: 1.8em;
+  margin-left: 57%;
+  text-align: center;
 }
 
 .right h2 {
   font-size: 28px;
   font-weight: normal;
   line-height: 32px;
-  width: 500px;
+  width: 80%;
 }
 
 #facebooklogo {
-  height: 130px;
+  height: 8em;
 }
 
 #hr {
   border-bottom: 1px solid #dadde1;
 }
 
-@font-face { font-family: SFProDisplayRegular; src: url('SFProDisplayRegular.otf'); } 
+@font-face { font-family: SFProDisplayRegular; src: url('font/SFProDisplayRegular.otf'); } 
 
 
 #login {
   height: 55px;
-  width: 90%;
+  width: 92%;
   font-size: 23px;
   font-weight: bold;
   cursor: pointer;
-  display: inline;
   box-sizing: border-box;
-  margin: 0 auto;
-  margin-bottom: 32px;
+  margin-bottom: 0.5em;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #1877f2;
-  color: white;
+  color: #fff;
   text-align: center;
   text-decoration: none;
 }
@@ -103,17 +106,16 @@ input {
 
 #register {
   height: 55px;
-  width: 48%;
+  width: 55%;
   font-size: 19px;
   font-weight: bold;
   cursor: pointer;
-  display: inline;
   box-sizing: border-box;
-  margin-bottom: 32px;
+  margin-bottom: 1.5em;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #42b72a;
-  color: white;
+  color: #fff;
   text-align: center;
   text-decoration: none;
 }
