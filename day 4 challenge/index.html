@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Facebook Clone</title>
-    <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facebook Clone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="right">
-        <img id="facebooklogo" src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook">
-        <h2 id="facebookpres">Facebook helps you connect and share with people in your life</h2>
+  <div class="right">
+    <img
+      id="facebooklogo"
+      src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"
+      alt="Facebook"
+    />
+    <h2 id="facebookpres">
+      Facebook helps you connect and share with people in your life
+    </h2>
+  </div>
+  <form action="get" class="loginform">
+    <div>
+      <input type="text" placeholder="Email address or phone number" />
+      <input type="password" placeholder="Password" />
+      <input id="login" type="submit" value="Log in" />
+      <a id="forgot" href="forget">Forgotten Password?<br /></a>
+      <br />
+      <hr id="hr" />
     </div>
-    <form action="get" class="loginform">
-        <div>
-            <input type="text" placeholder="Email address or phone number">
-            <input type="password" placeholder="Password">
-            <input id="login" type="submit" value="Log in">
-            <br>
-            <a id="forgot" href="forget">Forgotten Password?</a>
-            <br></br>
-            <hr id="hr"></hr>
-            <br>
-        </div>
-        <div class="register">
-            <input type="submit" id="register" value="Create new account">
-        </div>
-    </form>
-            <div id="para">
-            <p><strong>Create a Page</strong> for a celebrity, brand or business.</p>
-        </div>
+    <div class="register">
+      <input type="submit" id="register" value="Create new account" />
+    </div>
+  </form>
+  <div id="para">
+    <p><strong>Create a Page</strong> for a celebrity, brand or business.</p>
+  </div>
 </body>

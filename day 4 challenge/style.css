@@ -32,7 +32,7 @@ input {
   height: auto;
   width: 23vw;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   display: inline-block;
   position: relative;
   margin-top: 13%;
@@ -52,7 +52,7 @@ input {
   padding-left: 5%;
 }
 
-#forgot{
+#forgot {
   font-family: Helvetica;
   font-weight: lighter;
   color: #1877f2;
@@ -60,9 +60,9 @@ input {
 
 #para {
   font-family: Helvetica;
-  display:inline-block;
+  display: inline-block;
   margin-top: 1.8em;
-  margin-left: 57%;
+  margin-left: 58.2%;
   text-align: center;
 }
 
@@ -81,8 +81,10 @@ input {
   border-bottom: 1px solid #dadde1;
 }
 
-@font-face { font-family: SFProDisplayRegular; src: url('font/SFProDisplayRegular.otf'); } 
-
+@font-face {
+  font-family: SFProDisplayRegular;
+  src: url("font/SFProDisplayRegular.otf");
+}
 
 #login {
   height: 55px;
@@ -100,8 +102,8 @@ input {
   text-decoration: none;
 }
 
-#forgot{
-    text-decoration: none;
+#forgot {
+  text-decoration: none;
 }
 
 #register {
@@ -111,6 +113,7 @@ input {
   font-weight: bold;
   cursor: pointer;
   box-sizing: border-box;
+  margin-top: 1em;
   margin-bottom: 1.5em;
   border: 1px solid #ccc;
   border-radius: 8px;
