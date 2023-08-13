@@ -309,6 +309,7 @@ li {
   position: absolute;
   z-index: 10;
   display: flex;
+  transition: transform 0.2s;
   margin-top: 26%;
   margin-left: 25%;
 }
@@ -319,9 +320,18 @@ li {
   position: absolute;
   z-index: 10;
   display: flex;
+  transition: transform 0.2s;
   margin-top: 26%;
   margin-left: 12.5%;
   flex-direction: column;
+}
+
+#previous:hover {
+  transform: scale(1.1);
+}
+
+#next:hover {
+  transform: scale(1.1);
 }
 
 /* NAVBAR MENU */
