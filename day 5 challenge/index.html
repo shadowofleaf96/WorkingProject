@@ -71,10 +71,20 @@
     <div>
       <div class="container">
         <img id="bimage" src="images/iphone14.webp" />
-        <div>
-          <a href="#next"><i id="next" class="fa-regular fa-circle-right fa-2xl" style="color: #D8C8E6;"></i></a>
-          <a href="#navbr"><i id="previous" class="fa-regular fa-circle-left fa-2xl" style="color: #D8C8E6;"></i></a>
-        </div>
+        <a href="#next"
+          ><i
+            id="next"
+            class="fa-solid fa-circle-arrow-down fa-2xl"
+            style="color: #2e4f5e"
+          ></i
+        ></a>
+        <a href="#navbr"
+          ><i
+            id="previous"
+            class="fa-solid fa-circle-arrow-up fa-2xl"
+            style="color: #2e4f5e"
+          ></i
+        ></a>
         <div id="square">
           <h1 id="title3">
             iPhone 14 and iPhone 14 Plus From $799 or $33.29/mo. for 24 mo.
@@ -85,7 +95,7 @@
             or higher.<br />
           </p>
           <div>
-            <button class="buttons">Buy</button>
+            <button class="buttons" onclick="snackbar()">Buy</button>
           </div>
         </div>
       </div>
@@ -116,6 +126,8 @@
         </div>
       </div>
     </div>
+    <!-- The actual snackbar -->
+    <div id="asnackbar">You've Been Hacked</div>
   </body>
 
   <!-- FOOTER -->
@@ -157,4 +169,13 @@
       <small>Shadow Of Leaf &copy; 2023</small>
     </div>
   </footer>
+  <script>
+    function snackbar() {
+      var x = document.getElementById("asnackbar");
+      x.className = "show";
+      setTimeout(function () {
+        x.className = x.className.replace("show", "");
+      }, 3000);
+    }
+  </script>
 </html>

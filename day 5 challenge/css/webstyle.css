@@ -115,6 +115,76 @@ li {
   transition: all 0.25s;
 }
 
+/* SNACKBAR*/
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#asnackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 8px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 51%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#asnackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
 .footer-distributed .footer-right a:hover {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
@@ -177,15 +247,13 @@ li {
   font-size: 19px;
   font-weight: bold;
   cursor: pointer;
-  bottom: 20%;
+  bottom: 17%;
   left: 25%;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  justify-content: center;
   position: relative;
   transition: transform 0.2s;
   border-radius: 28px;
-  align-items: center;
   background-color: #0071e3;
   color: white;
   text-decoration: none;
@@ -216,9 +284,9 @@ li {
 
 .card {
   width: 300px;
-  padding: 10px;
+  padding: 15px;
   transition: transform 0.2s;
-  margin-left: 30px;
+  margin-left: 50px;
   background-color: #f1f1f1;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -247,8 +315,7 @@ li {
 /* SQUARE*/
 #square {
   height: 16em;
-  width: 22em;
-  position: static;
+  width: 25em;
   z-index: 10;
   display: flex;
   margin-top: 10%;
@@ -265,12 +332,12 @@ li {
 
 /* NAVBAR STYLING STARTS */
 .navbar {
-  display: flex;
-  height: 20%;
-  width: 65%;
+  height: 4em;
+  width: 78em;
   margin: auto;
   margin-top: 30px;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   border-radius: 30px;
   background-color: white;
@@ -307,22 +374,24 @@ li {
   height: auto;
   width: auto;
   position: absolute;
-  z-index: 10;
   display: flex;
-  transition: transform 0.2s;
-  margin-top: 26%;
-  margin-left: 25%;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s;
+  top: 18.6em;
+  left: 25.2em;
 }
 
 #previous {
   height: auto;
   width: auto;
   position: absolute;
-  z-index: 10;
   display: flex;
-  transition: transform 0.2s;
-  margin-top: 26%;
-  margin-left: 12.5%;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s;
+  top: 13.5em;
+  left: 25.2em;
   flex-direction: column;
 }
 
@@ -337,6 +406,9 @@ li {
 /* NAVBAR MENU */
 .menu {
   display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   margin-right: 15px;
   gap: 0.8em;
   text-align: center;
@@ -360,7 +432,7 @@ li {
 
 .dropdown {
   background-color: white;
-  padding: 1em 0;
+  padding: 0.5em 0;
   position: absolute;
   display: none;
   border-radius: 20px;
@@ -372,7 +444,7 @@ li {
 }
 
 .dropdown li {
-  padding: 0.5em 1em;
+  padding: 0.4em 1em;
   width: 8em;
   text-align: center;
 }
