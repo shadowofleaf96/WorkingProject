@@ -17,6 +17,7 @@ html {
 }
 
 body {
+  height: 100%;
   font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
   background-color: var(--background-color);
@@ -209,6 +210,7 @@ li {
 #bimage {
   margin-top: 1.5%;
   width: 63em;
+  display: flex;
   position: absolute;
   margin-right: 10%;
 }
@@ -268,7 +270,6 @@ li {
   flex-wrap: wrap;
   justify-content: center;
   height: 41em;
-  overflow-y: auto;
 }
 
 /* BEGIN BOTTOM CARDS */
@@ -314,12 +315,14 @@ li {
 
 /* SQUARE*/
 #square {
-  height: 16em;
-  width: 25em;
+  height: 18em;
+  width: 41em;
   z-index: 10;
   display: flex;
+  flex:1 ;  
   margin-top: 10%;
-  margin-left: 46%;
+  margin-left: 66%;
+  margin-right: 8%;
   flex-direction: column;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   background-color: #f5f5f7;
