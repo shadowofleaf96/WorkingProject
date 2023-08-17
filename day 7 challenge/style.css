@@ -45,18 +45,17 @@ body {
   grid-template-areas: "header header header";
   margin-right: 10%;
   grid-template-columns: 1fr 1fr auto;
-  grid-gap: 20px;
+  grid-gap: 10px;
 }
 
 .body-grid-container {
   display: grid;
-  padding-top: 35px;
+  padding: 15px;
   align-items: center;
   margin-left: 10%;
   margin-right: 10%;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 15px;
+  gap: 10px;
   grid-template-areas:
     "first first first first first first"
     "second second third third third third"
@@ -67,10 +66,11 @@ body {
 
 .item {
   background-color: #f2f2f2;
-  padding: 10px;
+  padding: 15px;
   border: 5px solid black;
   border-radius: 20px;
-  height: 300px;
+  position: relative;
+  height: 450px;
   transition: transform .5s; /* Animation */
   background-repeat: no-repeat;
   background-position: center;
@@ -81,7 +81,44 @@ body {
   transform: scale(1.04); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+.buttons2 {
+  height: 45px;
+  width: auto;
+  font-size: 25px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  border: 3px solid white;
+  font-family: "Agency FB", sans-serif;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  background-color: Transparent;
+  color: white;
+  text-decoration: none;
+}
+
+#first{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+#second{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.buttons2:hover {
+  transform: scale(1.1);
+}
+
 .item:nth-child(1) {
+  height: 550px;
   grid-area: first;
   background-image: url("images/grid1.jpg");
   cursor: pointer;
@@ -144,16 +181,4 @@ body {
   background-image: url("images/grid9.jpg");
   grid-area: ninth;
   cursor: pointer;
-}
-
-@keyframes zoom-in-zoom-out {
-  0% {
-    transform: scale(1, 1);
-  }
-  50% {
-    transform: scale(1.5, 1.5);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
 }
