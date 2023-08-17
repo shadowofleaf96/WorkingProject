@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* SMOOTHER SCROLLING*/
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: black;
+  font-family: "Agency FB", sans-serif;
+}
+.grid-item {
+  align-items: center;
+  color: white;
+}
+
+.head-grid-item1 {
+  grid-area: header;
+  cursor: pointer;
+}
+
+.head-grid-item2 {
+  grid-area: header;
+  cursor: pointer;
+}
+
+.head-grid-item3 {
+  grid-area: header;
+  cursor: pointer;
+}
+
+#title {
+  font-size: 35px;
+}
+
+.head-grid-container {
+  display: grid;
+  align-items: center;
+  padding-top: 35px;
+  margin-left: 10%;
+  grid-template-areas: "header header header";
+  margin-right: 10%;
+  grid-template-columns: 1fr 1fr auto;
+  grid-gap: 20px;
+}
+
+.body-grid-container {
+  display: grid;
+  padding-top: 35px;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 15px;
+  grid-template-areas:
+    "first first first first first first"
+    "second second third third third third"
+    "fourth fourth fourth fourth fifth fifth"
+    "sixth sixth seventh seventh fifth fifth"
+    "eighth eighth eighth ninth ninth ninth";
+}
+
+.item {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 5px solid black;
+  border-radius: 20px;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.item:nth-child(1) {
+  grid-area: first;
+  background-image: url("images/grid1.jpg");
+  cursor: pointer;
+}
+
+.item:nth-child(2) {
+  cursor: pointer;
+  grid-area: second;
+  background-image: url("images/grid2.jpg");
+}
+
+.item:nth-child(3) {
+  background-image: url("images/grid3.jpg");
+  grid-area: third;
+  cursor: pointer;
+}
+
+.item:nth-child(4) {
+  background-image: url("images/grid4.jpg");
+  grid-area: fourth;
+  cursor: pointer;
+}
+
+.buttons {
+  height: auto;
+  width: auto;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.item:nth-child(5) {
+  background-image: url("images/grid5.jpg");
+  grid-area: fifth;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.item:nth-child(6) {
+  background-image: url("images/grid6.jpg");
+  grid-area: sixth;
+  cursor: pointer;
+}
+
+.item:nth-child(7) {
+  background-image: url("images/grid7.jpg");
+  grid-area: seventh;
+  cursor: pointer;
+}
+
+.item:nth-child(8) {
+  background-image: url("images/grid8.jpg");
+  grid-area: eighth;
+  cursor: pointer;
+}
+
+.item:nth-child(9) {
+  background-image: url("images/grid9.jpg");
+  grid-area: ninth;
+  cursor: pointer;
+}
