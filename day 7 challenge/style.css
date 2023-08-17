@@ -71,9 +71,14 @@ body {
   border: 5px solid black;
   border-radius: 20px;
   height: 300px;
+  transition: transform .5s; /* Animation */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.item:hover {
+  transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .item:nth-child(1) {
@@ -139,4 +144,16 @@ body {
   background-image: url("images/grid9.jpg");
   grid-area: ninth;
   cursor: pointer;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }
