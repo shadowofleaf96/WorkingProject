@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css" />
+    <title>LTT Store Project</title>
+  </head>
+  <header>
+    <div class="head-grid-container">
+      <div class="head-grid-item1">
+        <p class="title">MRTech Store</p>
+      </div>
+      <div class="head-grid-item2">
+        <ul class="nav-links">
+          <input type="checkbox" id="checkbox_toggle" />
+          <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+          <div class="menu">
+            <li><a href="#home">HOME</a></li>
+            <li class="formations">
+              <a href="#pdt">PRODUCTS</a>
+              <ul class="dropdown">
+                <li><a href="#pc">PC</a></li>
+                <li><a href="#dp">MONITOR</a></li>
+                <li><a href="#kb">KEYBOARD</a></li>
+                <li><a href="#me">MICE</a></li>
+              </ul>
+            </li>
+            <li><a href="#ct">CONTACT</a></li>
+            <li><a href="#au">ABOUT US</a></li>
+          </div>
+        </ul>
+      </div>
+      <div class="head-grid-item3">
+        <button class="buttons">
+          <i id="cart" class="fa-solid fa-cart-shopping fa-xl"></i>
+        </button>
+      </div>
+    </div>   
+  </header>
+
+  <body>
+    <section>
+      <div class="diy-slideshow">
+        <figure class="show">
+          <img src="images/Nvidia geforce 4090.png" width="100%" /> 
+          <p class="title2">Nvidia GeForce 4090</p>
+          <button class="buybuttons">Add to Cart</button>
+        </figure>
+        <figure>
+          <img src="images/AMD-Ryzen-9-7900x.png" width="100%" />
+          <p class="title2">AMD Ryzen 9 7950X3D</p>
+          <button id="figcaption" class="buybuttons">Add to Cart</button>
+        </figure>
+        <figure>
+          <img src="images/Razer Keyboard.png" width="100%" />
+          <p class="title2">Razer BlackWidow V3 Keyboard</p>
+          <button id="figcaption" class="buybuttons">Add to Cart</button>
+        </figure>
+        <figure>
+          <img src="images/Razer Mamba Tournament Edition Razer.png" width="100%" />
+          <p class="title2">Razer Mamba Tournament Edition Razer</p>
+          <button id="figcaption" class="buybuttons">Add to Cart</button>
+        </figure>
+        <figure>
+          <img src="images/samsung 32inch qled gaming monitor.png" width="100%" />
+          <p class="title2">Samsung 32inch QLED Gaming Monitor</p>
+          <button id="figcaption" class="buybuttons">Add to Cart</button>
+        </figure>
+        <span class="prev">&laquo;</span>
+        <span class="next">&raquo;</span>
+      </div>  
+      <div class="body-grid-container">
+        <div class="item">
+          <img src="images/highquality.png" alt="QP">
+          <p class="title">Quality Products</p>
+          <p class="desc">We offer a curated selection of high-quality products that are built to last.</p>
+        </div>
+        <div class="item">
+          <img src="images/widevarity.png" alt="WV">
+          <p class="title">Wide Variety</p>
+          <p class="desc">Our store boasts a wide range of products to cater to diverse needs and preferences. Whether you're looking for the latest trends, classic styles, or unique and hard-to-find items, we have something for everyone in our store.</p>
+        </div>
+        <div class="item">
+          <img src="images/customerservice.png" alt="CS">
+          <p class="title">Exceptional Customer Service</p>
+          <p class="desc">Our dedicated customer service team is always ready to assist you.</p>
+        </div>
+        <div class="item">
+          <img src="images/fastdelivery.png" alt="FD">
+          <p class="title">Fast and Reliable Shipping</p>
+          <p class="desc">We understand the importance of timely deliveries.</p>
+        </div>
+        <div class="item">
+          <img src="images/exceptionaldeals.png" alt="ED">
+          <p class="title">Exclusive Deals and Offers</p>
+          <p class="desc">As a valued customer, you'll have access to exclusive deals, promotions, and special offers.</p>
+        </div>
+      </div>
+    </section>
+    <br/>
+  </body>
+   <!-- FOOTER -->
+   <footer class="footer-distributed">
+    <!-- FOOTER RIGHT MENU -->
+
+    <div class="footer-right">
+      <!-- FOOTER SOCIAL LINKS -->
+
+      <a href="#fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#linkedin"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#github"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+
+    <!-- FOOTER LEFT MENU -->
+
+    <div class="footer-left">
+      <!-- FOOTER MENU LINKS -->
+
+      <p class="footer-links">
+        <a href="#">Home</a>
+
+        <a href="#">Products</a>
+
+        <a href="#">Contact</a>
+
+        <a href="#">About us</a>
+      </p>
+    </div>
+    <div class="credits">
+      <!-- CREDITS -->
+      <small>Shadow Of Leaf &copy; 2023</small>
+    </div>
+  </footer>
+  <script>
+    (function(){
+  
+  var counter = 0, // to keep track of current slide
+      $items = document.querySelectorAll('.diy-slideshow figure'), // a collection of all of the slides, caching for performance
+      numItems = $items.length; // total number of slides
+  
+  // this function is what cycles the slides, showing the next or previous slide and hiding all the others
+  var showCurrent = function(){
+    var itemToShow = Math.abs(counter%numItems);// uses remainder (aka modulo) operator to get the actual index of the element to show  
+    
+    // remove .show from whichever element currently has it 
+    // http://stackoverflow.com/a/16053538/2006057
+    [].forEach.call( $items, function(el){
+      el.classList.remove('show');
+    });
+    
+    // add .show to the one item that's supposed to have it
+    $items[itemToShow].classList.add('show');    
+  };
+  
+  // add click events to prev & next buttons 
+  document.querySelector('.next').addEventListener('click', function() {
+       counter++;
+       showCurrent();
+    }, false);
+  
+  document.querySelector('.prev').addEventListener('click', function() {
+       counter--;
+       showCurrent();
+    }, false);
+    
+  })();  
+  </script>
+</html>
