@@ -42,12 +42,11 @@ input, textarea, button, a {
 }
 
 .title2 {
-  cursor: pointer;
   font-weight: bold;
   position: absolute;
-  font-size: 35px;
-  left: 6.5em;
-  bottom: 10em;
+  font-size: 45px;
+  left: 6%;
+  top: 0.5em;
   padding: .25em;
   text-align: center; /* Center the text horizontally */
   white-space: nowrap; /* Prevent text from wrapping by default */
@@ -260,7 +259,6 @@ input, textarea, button, a {
   display: grid;
   padding: 15px;
   height: auto;
-  align-items: center;
   justify-content: center;
   margin-left: 10%;
   margin-right: 10%;
@@ -317,13 +315,13 @@ input, textarea, button, a {
 }
 
 .buybuttons {
-  height: 10%;
-  width: 10%;
+  height: 4em;
+  width: 8em;
   position: absolute;
   font-size: 1.3em;
   bottom: 10em;
-  left: 13em;
-  padding: .25em;
+  left: 18%;
+  padding: 0.25em;
   background: rgba(0,0,0, .25);
   cursor: pointer;
   box-sizing: border-box;
@@ -499,13 +497,23 @@ figure{
   opacity: 0;
 }
 
-figure img{
+figure img {
   position: absolute;
   width: 100%;
   height: 85%;
   left: 20%;
-  margin:30px;
-  object-fit:scale-down;
+  margin: 30px;
+  object-fit: scale-down;
+}
+
+.desc2 {
+  position: absolute;
+  width: 25vw; /* 80% of the container width minus margins */
+  left: 60px; /* Same as the image's left margin */
+  bottom: 50%; /* Position at the bottom */
+  padding: 10px; /* Add some padding for spacing */
+  color: black;
+  font-size: 25px;
 }
 
 figcaption a{
@@ -553,14 +561,87 @@ figure.show{
     margin-left: 5%;
     margin-right: 5%;
   }
+
+  .desc2 {
+
+    display: none;
+
+}
+
+  .title2 {
+    font-size: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.2; 
+  }
+
+  .buybuttons {
+    width: 6em;
+    font-size: 1.2em;
+    bottom: 3em;    
+    left: 50%;
+    transform: translateX(-50%);
+
+  }
+
+  figure img {
+    position: absolute;
+    width: 100%;
+    height: 65%; /* Adjust the height as needed */
+    left: 0;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    object-fit: scale-down;
+  }
+
+  .buybuttons:hover {
+    transform: translateX(-50%) scale(1.1);
+  }
+
+
 }
 
 @media (max-width: 992px) {
   .body-grid-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 20% 20% 20%;
     margin-left: 5%;
     margin-right: 5%;
   }
+
+  figure img {
+    position: absolute;
+    width: 100%;
+    height: 65%; /* Adjust the height as needed */
+    left: 0;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    object-fit: scale-down;
+  }
+
+  .title2 {
+    font-size: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.2; 
+  }
+
+  .buybuttons {
+    width: 6em;
+    font-size: 1.2em;
+    bottom: 3em;    
+    left: 50%;
+    transform: translateX(-50%);
+
+  }
+
+  .buybuttons:hover {
+    transform: translateX(-50%) scale(1.1);
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -586,8 +667,6 @@ figure.show{
 
   .title2 {
     font-size: 24px;
-    left: 1em;
-    bottom: 7em;
     left: 50%;
     transform: translateX(-50%);
     line-height: 1.2; 
@@ -596,7 +675,7 @@ figure.show{
   figure img {
     position: absolute;
     width: 100%;
-    height: auto; /* Adjust the height as needed */
+    height: 65%; /* Adjust the height as needed */
     left: 0;
     right: 0;
     top: 40%;
@@ -664,6 +743,11 @@ figure.show{
     right: 0;
     width: 100%; /* Adjust as needed */
   }
+
+  .buybuttons:hover {
+    transform: translateX(-50%) scale(1.1);
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -677,8 +761,6 @@ figure.show{
 
   .title2 {
     font-size: 24px;
-    left: 1em;
-    bottom: 7em;
     left: 50%;
     transform: translateX(-50%);
     line-height: 1.2; /* Increase the line height for two lines of text */
@@ -711,9 +793,16 @@ figure.show{
   }
 
   .buybuttons {
-    width: 100px;
+    width: 6em;
     font-size: 1.2em;
-    bottom: 3em;
-    left: 7em;
+    bottom: 3em;    
+    left: 50%;
+    transform: translateX(-50%);
+
   }
+
+  .buybuttons:hover {
+    transform: translateX(-50%) scale(1.1);
+  }
+
 }
