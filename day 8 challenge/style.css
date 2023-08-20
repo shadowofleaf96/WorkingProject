@@ -12,6 +12,8 @@
   box-sizing: border-box;
 }
 
+@import url("https://fonts.cdnfonts.com/css/agency-fb");
+
 /* SMOOTHER SCROLLING*/
 html {
   scroll-behavior: smooth;
@@ -21,10 +23,12 @@ body {
   font-family: "Agency FB", sans-serif;
 }
 
-input, textarea, button, a { 
+input,
+textarea,
+button,
+a {
   font-family: "Agency FB", sans-serif;
 }
-
 
 .grid-item {
   color: black;
@@ -47,7 +51,7 @@ input, textarea, button, a {
   font-size: 45px;
   left: 6%;
   top: 0.5em;
-  padding: .25em;
+  padding: 0.25em;
   text-align: center; /* Center the text horizontally */
   white-space: nowrap; /* Prevent text from wrapping by default */
   overflow: hidden; /* Hide overflow content */
@@ -254,7 +258,6 @@ input, textarea, button, a {
   grid-area: head-grid-item3;
 }
 
-
 .body-grid-container {
   display: grid;
   padding: 15px;
@@ -268,7 +271,7 @@ input, textarea, button, a {
   grid-gap: 15px;
   grid-template-areas:
     "first second third"
-    "fourth second fifth"
+    "fourth second fifth";
 }
 
 .item {
@@ -284,7 +287,7 @@ input, textarea, button, a {
   bottom: auto;
   border-radius: 3px;
   position: relative;
-  transition: transform .5s; /* Animation */
+  transition: transform 0.5s; /* Animation */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -294,7 +297,7 @@ input, textarea, button, a {
   transform: scale(1.04);
 }
 
-#cart{
+#cart {
   margin-right: 10px;
 }
 
@@ -322,7 +325,7 @@ input, textarea, button, a {
   bottom: 10em;
   left: 18%;
   padding: 0.25em;
-  background: rgba(0,0,0, .25);
+  background: rgba(0, 0, 0, 0.25);
   cursor: pointer;
   box-sizing: border-box;
   border: 3px solid black;
@@ -334,14 +337,14 @@ input, textarea, button, a {
 }
 
 .item img {
-width: 45%;
+  width: 45%;
 }
 
 .buybuttons:hover {
   transform: scale(1.1);
 }
 
-#first{
+#first {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -349,7 +352,7 @@ width: 45%;
   margin-right: 20px;
 }
 
-#second{
+#second {
   position: absolute;
   bottom: 0;
   margin-bottom: 20px;
@@ -362,7 +365,7 @@ width: 45%;
 
 .item:nth-child(1) {
   grid-area: first;
-  background-color:#dee2e6;
+  background-color: #dee2e6;
   cursor: pointer;
 }
 
@@ -370,18 +373,18 @@ width: 45%;
   cursor: pointer;
   grid-area: second;
   text-align: center;
-  align-self: center; 
-  background-color:#dee2e6;
+  align-self: center;
+  background-color: #dee2e6;
 }
 
 .item:nth-child(3) {
-  background-color:#dee2e6;
+  background-color: #dee2e6;
   grid-area: third;
   cursor: pointer;
 }
 
 .item:nth-child(4) {
-  background-color:#dee2e6;
+  background-color: #dee2e6;
   grid-area: fourth;
   cursor: pointer;
 }
@@ -396,7 +399,7 @@ width: 45%;
 }
 
 .item:nth-child(5) {
-  background-color:#dee2e6;
+  background-color: #dee2e6;
   grid-area: fifth;
   cursor: pointer;
 }
@@ -475,7 +478,7 @@ input[type="checkbox"] {
 
 /* RESPONSIVE NAVBAR MENU ENDS */
 
-.diy-slideshow{
+.diy-slideshow {
   height: 70%;
   width: 80%;
   margin-top: 30px;
@@ -490,7 +493,7 @@ input[type="checkbox"] {
   overflow: hidden;
 }
 
-figure{
+figure {
   position: absolute;
   height: 700px; /* Set the desired height */
   overflow: hidden; /* Clip the image if it's larger */
@@ -510,44 +513,46 @@ figure img {
   position: absolute;
   width: 25vw; /* 80% of the container width minus margins */
   left: 60px; /* Same as the image's left margin */
-  bottom: 50%; /* Position at the bottom */
+  bottom: 55%; /* Position at the bottom */
   padding: 10px; /* Add some padding for spacing */
   color: black;
   font-size: 25px;
 }
 
-figcaption a{
+figcaption a {
   color: #fff;
   font-size: large;
 }
 
-figure.show{
+figure.show {
   opacity: 1;
   position: static;
   transition: 1s opacity;
 }
-.next, .prev{
+.next,
+.prev {
   color: #fff;
   position: absolute;
-  background: rgba(0,0,0, .6);
+  background: rgba(0, 0, 0, 0.6);
   top: 50%;
   z-index: 1;
   font-size: 2em;
-  margin-top: -.75em;
-  opacity: .5;
+  margin-top: -0.75em;
+  opacity: 0.5;
   user-select: none;
 }
-.next:hover, .prev:hover{
+.next:hover,
+.prev:hover {
   cursor: pointer;
   opacity: 1;
 }
-.next{
+.next {
   right: 0;
   padding: 10px 5px 15px 10px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.prev{
+.prev {
   left: 0;
   padding: 10px 10px 15px 5px;
   border-top-right-radius: 3px;
@@ -563,25 +568,22 @@ figure.show{
   }
 
   .desc2 {
-
     display: none;
-
-}
+  }
 
   .title2 {
     font-size: 24px;
     left: 50%;
     transform: translateX(-50%);
-    line-height: 1.2; 
+    line-height: 1.2;
   }
 
   .buybuttons {
     width: 6em;
     font-size: 1.2em;
-    bottom: 3em;    
+    bottom: 3em;
     left: 50%;
     transform: translateX(-50%);
-
   }
 
   figure img {
@@ -599,8 +601,6 @@ figure.show{
   .buybuttons:hover {
     transform: translateX(-50%) scale(1.1);
   }
-
-
 }
 
 @media (max-width: 992px) {
@@ -626,22 +626,20 @@ figure.show{
     font-size: 24px;
     left: 50%;
     transform: translateX(-50%);
-    line-height: 1.2; 
+    line-height: 1.2;
   }
 
   .buybuttons {
     width: 6em;
     font-size: 1.2em;
-    bottom: 3em;    
+    bottom: 3em;
     left: 50%;
     transform: translateX(-50%);
-
   }
 
   .buybuttons:hover {
     transform: translateX(-50%) scale(1.1);
   }
-
 }
 
 @media (max-width: 768px) {
@@ -669,7 +667,7 @@ figure.show{
     font-size: 24px;
     left: 50%;
     transform: translateX(-50%);
-    line-height: 1.2; 
+    line-height: 1.2;
   }
 
   figure img {
@@ -747,7 +745,6 @@ figure.show{
   .buybuttons:hover {
     transform: translateX(-50%) scale(1.1);
   }
-
 }
 
 @media (max-width: 480px) {
@@ -795,14 +792,12 @@ figure.show{
   .buybuttons {
     width: 6em;
     font-size: 1.2em;
-    bottom: 3em;    
+    bottom: 3em;
     left: 50%;
     transform: translateX(-50%);
-
   }
 
   .buybuttons:hover {
     transform: translateX(-50%) scale(1.1);
   }
-
 }

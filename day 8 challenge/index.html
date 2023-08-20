@@ -104,7 +104,7 @@
             width="100%"
           />
           <p class="title2">
-            Samsung 32" CHG7 QLED 1800R AMD FreeSync 2 Gaming Monitor
+            Samsung 32" CHG7 QLED AMD FreeSync 2 Gaming Monitor
           </p>
           <p class="desc2">
             QLED with quantum dot delivers realistic images <br />
@@ -233,25 +233,5 @@
         false
       );
     })();
-    // Get the .diy-slideshow container
-    const slideshow = document.querySelector(".diy-slideshow");
-
-    // Get the .desc2 element
-    const desc2 = slideshow.querySelector(".desc2");
-
-    // Get the initial width of the figure container
-    const initialWidth = slideshow.offsetWidth;
-
-    // Calculate the font size based on the initial width
-    const initialFontSize = parseFloat(getComputedStyle(desc2).fontSize);
-
-    // Calculate the difference in width and adjust the font size accordingly
-    slideshow.addEventListener("resize", () => {
-      const newWidth = slideshow.offsetWidth;
-      const widthDifference = initialWidth - newWidth;
-      const fontSizeAdjustment = Math.floor(widthDifference / 10) * 2;
-
-      desc2.style.fontSize = initialFontSize - fontSizeAdjustment + "px";
-    });
   </script>
 </html>
