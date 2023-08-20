@@ -12,8 +12,6 @@
   box-sizing: border-box;
 }
 
-@import url("https://fonts.cdnfonts.com/css/agency-fb");
-
 /* SMOOTHER SCROLLING*/
 html {
   scroll-behavior: smooth;
