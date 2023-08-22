@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* SMOOTHER SCROLLING*/
+  html {
+    scroll-padding-top: 90px;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Agency FB", sans-serif;
+  }
+
+  .link-underline {
+    border-bottom-width: 0;
+    background-image: linear-gradient(transparent, transparent),
+      linear-gradient(#fff, #fff);
+    background-size: 0 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease-in-out;
+  }
+  
+  .link-underline-black {
+    background-image: linear-gradient(transparent, transparent),
+      linear-gradient(#000, #000);
+  }
+  
+  .link-underline:hover {
+    background-size: 100% 3px;
+    background-position: 0 100%;
+  }
+
+  @media (max-width: 768px) {
+  .link-underline:hover {
+    /* Your mobile-specific styles here */
+    background-size: 0;
+    background-color: #cccccc;
+  }
+}
+
+@media (max-width: 480px) {
+  .link-underline:hover {
+    /* Your mobile-specific styles here */
+    background-size: 0;
+    background-color: #cccccc;
+  }
+}
