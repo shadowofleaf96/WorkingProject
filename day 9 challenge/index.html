@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -41,11 +40,15 @@
           >
         </a>
         <div class="flex md:order-2">
+          
           <button
+          
             type="button"
-            class="text-white transition-transform transform hover:scale-105 bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-1 py-2 ml-1 text-center md:mr-0"
+            onclick="window.open('https://docs.google.com/viewer?url=https://raw.githubusercontent.com/shadowofleaf96/shadowofleaf96.github.io/master/cv.pdf', '_blank')"
+            class=" text-white transition-transform transform hover:scale-105 bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-1 py-2 ml-1 text-center md:mr-0"
           >
-            Contact Me
+          <i class="fa fa-eye"></i>
+            Resume
           </button>
           <button
             data-collapse-toggle="navbar-sticky"
@@ -226,7 +229,7 @@
             <img
               alt="Placeholder"
               class="w-full h-full object-contain mb-2"
-              src="images/challengeday.png"
+              src="images/challengeday.jpg"
             />
           </div>
           <h1 class="text-2xl text-left lg:text-center md:whitespace-normal">
@@ -251,7 +254,7 @@
             <img
               alt="Placeholder"
               class="w-full h-full object-contain mb-2"
-              src="images/imusic.png"
+              src="images/imusic.jpg"
             />
           </div>
           <h1 class="text-2xl text-left lg:text-center md:whitespace-normal">
@@ -354,7 +357,7 @@
             <img
               alt="Placeholder"
               class="w-full h-full object-contain mb-2"
-              src="images/buildingpc.png"
+              src="images/buildingpc.jpg"
             />
           </div>
           <h1
@@ -541,7 +544,7 @@
               response.status,
               response.text
             );
-            alert("SUCCESS!");
+            alert("Your Email has been sent");
           },
           (error) => {
             console.log("FAILED...", error);
@@ -603,5 +606,4 @@
       }, 200);
     }
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 </html>
