@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const mobileWindow = window.open("", "_blank", `width=${width},height=${height}`);
       
       // Load your website in the new window
-      mobileWindow.location.href = "http://127.0.0.1:5500/index.html"; // Replace with your website URL
+      mobileWindow.location.href = "./index.html";
     });
   });
 
