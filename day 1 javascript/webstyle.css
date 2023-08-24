@@ -1,0 +1,116 @@
+/* Global styles */
+* { 
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+    background-color: white;
+}
+
+/* Form styles */
+.btitle {
+    font-size: 25px;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+}
+
+.sign-upform {
+    width: 80%;
+    max-width: 400px; /* Limit the form width for larger screens */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: whitesmoke;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.forminfos {
+    font-size: 15px;
+    color: black;
+    text-align: center;
+}
+
+.labelandinputs {
+    margin-bottom: 20px;
+    font-weight: lighter;
+    font-size: 14px;
+    color: black;
+}
+
+.labelandinputs label {
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.labelandinputs input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.labelandinputs2 {
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.labelandinputs2 input {
+    vertical-align: text-top;
+}
+
+#bregister.hover-effect {
+    background-color: lightblue;
+    color: white;
+  }
+
+#bregister {
+    height: 40px;
+    font-size: 15px;
+    padding: 5px;
+    margin: 0 auto;
+    margin-bottom: 32px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.simulate-button {
+    margin-top: 20px;
+    align-self: flex-end;
+  }
+
+/* For screens with a width up to 768px */
+@media (max-width: 768px) {
+    .sign-upform {
+      width: 80%;
+    }
+    
+    .labelandinputs label {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    
+    .labelandinputs input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    #bregister {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
