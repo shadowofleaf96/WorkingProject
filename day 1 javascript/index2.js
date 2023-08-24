@@ -1,8 +1,11 @@
 //task10
 document.addEventListener("DOMContentLoaded", function() {
-    const simulateMobileButton = document.getElementById("simulateMobileButton");
+  var simulateMobileButton = document.getElementById('simulateMobileButton');
+  var myForm = document.getElementById('myForm');
+
+  simulateMobileButton.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevents the form from submitting
   
-    simulateMobileButton.addEventListener("click", function() {
       const width = 375; // Mobile viewport width in pixels
       const height = 812; // Mobile viewport height in pixels
   
@@ -10,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
       const mobileWindow = window.open("", "_blank", `width=${width},height=${height}`);
       
       // Load your website in the new window
-      mobileWindow.location.href = "./index.html";
+      mobileWindow.location.href = "./index.html";  
+      
     });
   });
 
