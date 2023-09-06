@@ -1,5 +1,6 @@
 // Challenge Day 3 //
 // TASK 1 //
+
 const prompt = require('prompt-sync')();
 
 var arrayInput = [];
@@ -62,6 +63,7 @@ const sortedBArray = bubbleSort(arrayBInput);
 console.log(sortedBArray);
 
 // TASK 3 //
+
 var arrayCInput = [];
 for(var i = 0; i < 5; i++)
 arrayCInput.push(prompt("Enter your numbers: "));
@@ -88,6 +90,7 @@ const sortedcArray = insertionSort(arrayCInput);
 console.log(sortedcArray);
 
 // TASK 4 //
+
 function linearSearch(arr, target) {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i] === target) {
@@ -108,6 +111,7 @@ function linearSearch(arr, target) {
   }
 
 // TASK 5 //
+
 function countZeros(matrix) {
     let count = 0;
 
