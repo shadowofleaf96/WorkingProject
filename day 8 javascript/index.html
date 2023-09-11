@@ -8,9 +8,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <link href="./images/mrtech_black.ico" rel="icon" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
     <script src="index.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>MRTech Store Project</title>
   </head>
 
@@ -53,126 +57,84 @@
     </div>
   </header>
 
-    <body>
-      <section>
-        <div id="shopping-cart" class="absolute z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-          <!--
-            Background backdrop, show/hide based on slide-over state.
-        
-            Entering: "ease-in-out duration-500"
-              From: "opacity-0"
-              To: "opacity-100"
-            Leaving: "ease-in-out duration-500"
-              From: "opacity-100"
-              To: "opacity-0"
-          -->
-          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-        
-          <div class="fixed inset-0 overflow-hidden">
-            <div class="absolute inset-0 overflow-hidden">
-              <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                <!--
-                  Slide-over panel, show/hide based on slide-over state.
-        
-                  Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-                    From: "translate-x-full"
-                    To: "translate-x-0"
-                  Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-                    From: "translate-x-0"
-                    To: "translate-x-full"
-                -->
-                <div class="pointer-events-auto w-screen max-w-md">
-                  <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-                    <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                      <div class="flex items-start justify-between">
-                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
-                        <div class="ml-3 flex h-7 items-center">
-                          <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
-                            <span class="absolute -inset-0.5"></span>
-                            <span class="sr-only">Close panel</span>
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-        
-                      <div class="mt-8">
-                        <div class="flow-root">
-                          <ul role="list" class="-my-6 divide-y divide-gray-200">
-                            <li class="flex py-6">
-                              <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
-                              </div>
-        
-                              <div class="ml-4 flex flex-1 flex-col">
-                                <div>
-                                  <div class="flex justify-between text-base font-medium text-gray-900">
-                                    <h3>
-                                      <a href="#">Throwback Hip Bag</a>
-                                    </h3>
-                                    <p class="ml-4">$90.00</p>
-                                  </div>
-                                  <p class="mt-1 text-sm text-gray-500">Salmon</p>
-                                </div>
-                                <div class="flex flex-1 items-end justify-between text-sm">
-                                  <p class="text-gray-500">Qty 1</p>
-        
-                                  <div class="flex">
-                                    <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="flex py-6">
-                              <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg" alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch." class="h-full w-full object-cover object-center">
-                              </div>
-        
-                              <div class="ml-4 flex flex-1 flex-col">
-                                <div>
-                                  <div class="flex justify-between text-base font-medium text-gray-900">
-                                    <h3>
-                                      <a href="#">Medium Stuff Satchel</a>
-                                    </h3>
-                                    <p class="ml-4">$32.00</p>
-                                  </div>
-                                  <p class="mt-1 text-sm text-gray-500">Blue</p>
-                                </div>
-                                <div class="flex flex-1 items-end justify-between text-sm">
-                                  <p class="text-gray-500">Qty 1</p>
-        
-                                  <div class="flex">
-                                    <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-        
-                            <!-- More products... -->
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-        
-                    <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-                      <div class="flex justify-between text-base font-medium text-gray-900">
-                        <p>Subtotal</p>
-                        <p>$262.00</p>
-                      </div>
-                      <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                      <div class="mt-6">
-                        <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
-                      </div>
-                      <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
-                        <p>
-                          or
-                          <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
-                            Continue Shopping
-                            <span aria-hidden="true"> &rarr;</span>
-                          </button>
+  <body>
+    <section>
+      <div
+        id="shopping-cart"
+        class="z-10 hidden mt-16 fixed animate__animated animate__fadeIn"
+        aria-labelledby="slide-over-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+        <div class="notTheSidebar fixed inset-0 overflow-hidden">
+          <div class="inset-0 overflow-hidden">
+            <div
+              class="sideBar pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10"
+            >
+              <div class="pointer-events-auto w-screen max-w-md">
+                <div
+                  class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl"
+                >
+                  <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                    <div class="flex mt-24 items-start">
+                      <h2
+                        class="text-2xl font-medium text-gray-900"
+                        id="slide-over-title"
+                      >
+                        Shopping cart
+                      </h2>
+                      <div
+                        id="emptyCart"
+                        class="flex flex-col items-center justify-center mt-10"
+                      >
+                        <i
+                          class="fa-solid fa-bag-shopping fa-6x"
+                          style="margin-bottom: 20px"
+                        ></i>
+                        <p style="font-size: 1.3em">
+                          Your shopping cart is empty.
                         </p>
                       </div>
+                    </div>
+                    <div class="flex flex-col mt-4">
+                      <div class="flow-root cart-content"></div>
+                    </div>
+                  </div>
+
+                  <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                    <div
+                      class="flex justify-between text-xl font-medium text-gray-900"
+                    >
+                      <p>Subtotal</p>
+                      <p id="subTotal">Nothing for Now</p>
+                    </div>
+                    <p class="mt-0.5 text-xl text-gray-500">
+                      Shipping and taxes calculated at checkout.
+                    </p>
+                    <div class="mt-6">
+                      <a
+                        href="#"
+                        class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-xl font-medium text-white shadow-sm hover:bg-indigo-700"
+                        >Checkout</a
+                      >
+                    </div>
+                    <div
+                      class="mt-6 flex justify-center text-center text-lg text-gray-500"
+                    >
+                      <p>
+                        or
+                        <button
+                          type="button"
+                          class="font-medium text-indigo-600 hover:text-indigo-500"
+                          id="continuebut"
+                        >
+                          Continue Shopping
+                          <span aria-hidden="true"> &rarr;</span>
+                        </button>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -180,117 +142,199 @@
             </div>
           </div>
         </div>
-        <section id="notHeader">
+      </div>
+      <section>
         <div class="diy-slideshow">
           <figure class="show fig" data-product-id="product-5">
-            <img class="sales" src="images/20off.png" height="10%" width="10%" />
-            <img src="images/Nvidia geforce 4090.png" width="100%" />
+            <img
+              class="sales"
+              src="images/20off.png"
+              height="10%"
+              width="10%"
+            />
+            <img
+              class="img2"
+              src="images/Nvidia geforce 4090.png"
+              width="100%"
+            />
             <h4 class="title2">Nvidia GeForce RTX 4090</h4>
             <p class="desc2">
               The NVIDIA GeForce RTX 4090 is the ultimate GeForce GPU. <br />
               It brings an enormous leap in performance, <br />
               efficiency, and AI-powered graphics.
             </p>
-            <span style="display: none;" class="product-price">6000 DH &nbsp;<p class="descards"><s>6800DH</s></p></span>
-            <button data-product-id="product-5" id="figcaption" class="buybuttons">
+            <span style="display: none" class="product-price"
+              >24900 DH &nbsp;
+              <p class="descards"><s>26000 DH</s></p></span
+            >
+            <button
+              data-product-id="product-5"
+              id="figcaption"
+              class="buybuttons"
+            >
               <i class="fa fa-shopping-cart"></i> Add to Cart
             </button>
           </figure>
           <figure class="fig" data-product-id="product-3">
-            <img class="sales" src="images/20off.png" height="10%" width="10%" />
-            <img src="images/AMD-Ryzen-9-7900x.png" width="100%" />
+            <img
+              class="sales"
+              src="images/20off.png"
+              height="10%"
+              width="10%"
+            />
+            <img class="img2" src="images/AMD-Ryzen-9-7900x.png" width="100%" />
             <h4 class="title2">AMD Ryzen 9 7950X3D</h4>
             <p class="desc2">
               The Ultimate Processor for Gaming,<br />
               with AMD 3D V-Cache™ Technology for Even More Game Performance
             </p>
-            <span style="display: none;" class="product-price">6000 DH &nbsp;<p class="descards"><s>6800DH</s></p></span>
-            <button data-product-id="product-3" id="figcaption" class="buybuttons">
+            <span style="display: none" class="product-price"
+              >8000 DH &nbsp;
+              <p class="descards"><s>9500DH</s></p></span
+            >
+            <button
+              data-product-id="product-3"
+              id="figcaption"
+              class="buybuttons"
+            >
               <i class="fa fa-shopping-cart"></i> Add to Cart
             </button>
           </figure>
           <figure class="fig" data-product-id="product-4">
-            <img class="sales" src="images/20off.png" height="20px" width="20px" />
             <img
+              class="sales"
+              src="images/20off.png"
+              height="20px"
+              width="20px"
+            />
+            <img
+              class="img2"
               src="images/samsung 32inch qled gaming monitor.png"
               width="100%"
             />
-            <h4 class="title2">Samsung 32" CHG7 QLED AMD FreeSync 2 Gaming Monitor</h4>
+            <h4 class="title2">
+              Samsung 32" CHG7 QLED AMD FreeSync 2 Gaming Monitor
+            </h4>
             <p class="desc2">
               QLED with quantum dot delivers realistic images <br />
               with a billion more shades of color. <br />
               HDR support for mind-blowing detail and contrast.
             </p>
-            <span style="display: none;" class="product-price">6000 DH &nbsp;<p class="descards"><s>6800DH</s></p></span>
-            <button data-product-id="product-4" id="figcaption" class="buybuttons">
-              <i class="fa fa-shopping-cart"></i> Add to Cart</button>
+            <span style="display: none" class="product-price"
+              >6000 DH &nbsp;
+              <p class="descards"><s>6800DH</s></p></span
+            >
+            <button
+              data-product-id="product-4"
+              id="figcaption"
+              class="buybuttons"
+            >
+              <i class="fa fa-shopping-cart"></i> Add to Cart
+            </button>
           </figure>
           <span class="prev">&laquo;</span>
           <span class="next">&raquo;</span>
         </div>
-  
+
         <div class="sell-cards">
           <div class="product-card" data-product-id="product-1">
-            <img src="images/Razer Keyboard.png" alt="" />
+            <img class="img2" src="images/Razer Keyboard.png" alt="" />
             <div>
               <h4>Razer BlackWidow Keybrd</h4>
-              <span class="product-price">1100 DH &nbsp;<p class="descards"><s>1300DH</s></p></span>
-              <button data-product-id="product-1">Add to Cart</button>
+              <span class="product-price"
+                >1100 DH &nbsp;
+                <p class="descards"><s>1300DH</s></p></span
+              >
+              <button class="buybuttons" data-product-id="product-1">
+                Add to Cart
+              </button>
             </div>
           </div>
-  
+
           <div class="product-card" data-product-id="product-2">
-            <img src="images/Razer Mamba Tournament Edition Razer.png" alt="" />
+            <img
+              class="img2"
+              src="images/Razer Mamba Tournament Edition Razer.png"
+              alt=""
+            />
             <div>
               <h4>Razer Mamba Mouse</h4>
-              <span class="product-price">900 DH &nbsp;<p class="descards"><s>1100DH</s></p></span>
-              <button data-product-id="product-2">Add to Cart</button>
+              <span class="product-price"
+                >900 DH &nbsp;
+                <p class="descards"><s>1100DH</s></p></span
+              >
+              <button class="buybuttons" data-product-id="product-2">
+                Add to Cart
+              </button>
             </div>
           </div>
-  
+
           <div class="product-card" data-product-id="product-3">
-            <img src="images/AMD-Ryzen-9-7900x.png" alt="" />
+            <img class="img2" src="images/AMD-Ryzen-9-7900x.png" alt="" />
             <div>
               <h4>AMD Ryzen 9 7950X3D</h4>
-              <span class="product-price">8000 DH &nbsp;<p class="descards"><s>9500DH</s></p></span>
-              <button data-product-id="product-3">Add to Cart</button>
+              <span class="product-price"
+                >8000 DH &nbsp;
+                <p class="descards"><s>9500DH</s></p></span
+              >
+              <button class="buybuttons" data-product-id="product-3">
+                Add to Cart
+              </button>
             </div>
           </div>
-  
+
           <div class="product-card" data-product-id="product-4">
-            <img src="images/samsung 32inch qled gaming monitor.png" alt="" />
+            <img
+              class="img2"
+              src="images/samsung 32inch qled gaming monitor.png"
+              alt=""
+            />
             <div>
               <h4>Samsung 32" CHG7 QLED AMD FreeSync 2 Gaming Monitor</h4>
-              <span class="product-price">6000 DH &nbsp;<p class="descards"><s>6800DH</s></p></span>
-              <button data-product-id="product-4">Add to Cart</button>
+              <span class="product-price"
+                >6000 DH &nbsp;
+                <p class="descards"><s>6800DH</s></p></span
+              >
+              <button class="buybuttons" data-product-id="product-4">
+                Add to Cart
+              </button>
             </div>
           </div>
-  
+
           <div class="product-card" data-product-id="product-5">
-            <img src="images/Nvidia geforce 4090.png" alt="" />
+            <img class="img2" src="images/Nvidia geforce 4090.png" alt="" />
             <div>
               <h4>ASUS ROG Strix GeForce RTX 4090 24GB OC Edition</h4>
-              <span class="product-price">24 900 DH &nbsp;<p class="descards"><s>26000DH</s></p></span>
-              <button data-product-id="product-5">Add to Cart</button>
+              <span class="product-price"
+                >24900 DH &nbsp;
+                <p class="descards"><s>26000DH</s></p></span
+              >
+              <button class="buybuttons" data-product-id="product-5">
+                Add to Cart
+              </button>
             </div>
           </div>
-  
+
           <div class="product-card" data-product-id="product-6">
-            <img src="images/asus rog mousepad.png" alt="" />
+            <img class="img2" src="images/asus rog mousepad.png" alt="" />
             <div>
-            <h4>ASUS ROG Sheath Extended Gaming Mouse Pad</h4>
-              <span class="product-price">300DH &nbsp;<p class="descards"><s>450DH</s></p></span>
-              <button data-product-id="product-6">Add to Cart</button>
+              <h4>ASUS ROG Sheath Extended Gaming Mouse Pad</h4>
+              <span class="product-price"
+                >300 DH &nbsp;
+                <p class="descards"><s>450DH</s></p></span
+              >
+              <button class="buybuttons" data-product-id="product-6">
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
-  
+
         <div class="body-grid-container">
           <div class="item">
             <img src="images/exceptionaldeals.png" alt="ED" />
             <p class="desctitle">Great value</p>
-            <p class="desc">
-              We offer competitive prices on all our products.</p>
+            <p class="desc">We offer competitive prices on all our products.</p>
           </div>
           <div class="item">
             <img src="images/fastdelivery.png" alt="FD" />
@@ -301,44 +345,46 @@
             <img src="images/customerservice.png" alt="CS" />
             <p class="desctitle">Help center</p>
             <p class="desc">
-              Discover our Help Center for solutions to your issues.</p>
+              Discover our Help Center for solutions to your issues.
+            </p>
           </div>
         </div>
       </section>
       <br />
-    </body>
-    <!-- FOOTER -->
-    <footer class="footer-distributed">
-      <!-- FOOTER RIGHT MENU -->
-  
-      <div class="footer-right">
-        <!-- FOOTER SOCIAL LINKS -->
-  
-        <a href="#fb"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#twitter"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#linkedin"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#github"><i class="fa-brands fa-instagram"></i></a>
-      </div>
-  
-      <!-- FOOTER LEFT MENU -->
-  
-      <div class="footer-left">
-        <!-- FOOTER MENU LINKS -->
-  
-        <p class="footer-links">
-          <a href="#">Home</a>
-  
-          <a href="#">Products</a>
-  
-          <a href="#">Contact</a>
-  
-          <a href="#">About us</a>
-        </p>
-      </div>
-      <div class="credits">
-        <!-- CREDITS -->
-        <small>Shadow Of Leaf &copy; 2023</small>
-      </div>
-    </footer>
-  </section>
+    </section>
+  </body>
+
+  <!-- FOOTER -->
+  <footer class="footer-distributed">
+    <!-- FOOTER RIGHT MENU -->
+
+    <div class="footer-right">
+      <!-- FOOTER SOCIAL LINKS -->
+
+      <a href="#fb"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#linkedin"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#github"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+
+    <!-- FOOTER LEFT MENU -->
+
+    <div class="footer-left">
+      <!-- FOOTER MENU LINKS -->
+
+      <p class="footer-links">
+        <a href="#">Home</a>
+
+        <a href="#">Products</a>
+
+        <a href="#">Contact</a>
+
+        <a href="#">About us</a>
+      </p>
+    </div>
+    <div class="credits">
+      <!-- CREDITS -->
+      <small>Shadow Of Leaf &copy; 2023</small>
+    </div>
+  </footer>
 </html>

@@ -1,165 +1,374 @@
-// This is for the SlideShow(Carousel) //
-
+// This is a way to delay the execution of JavaScript code until the web page is ready for manipulation.
 document.addEventListener("DOMContentLoaded", function () {
-  (function () {
-    var counter = 0, // to keep track of current slide
-      $items = document.querySelectorAll(".diy-slideshow figure"), // a collection of all of the slides, caching for performance
-      numItems = $items.length, // total number of slides
-      intervalTime = 5000; // time in milliseconds between auto-slides (adjust as needed)
+  // Slideshow (Carousel) Variables
+  const $items = document.querySelectorAll(".diy-slideshow figure");
+  const numItems = $items.length;
+  const intervalTime = 5000; // Time in milliseconds between auto-slides
+  let counter = 0; // Keeps track of the current slide index
 
-    // this function is what cycles the slides, showing the next or previous slide and hiding all the others
-    var showCurrent = function () {
-      var itemToShow = Math.abs(counter % numItems); // uses remainder (aka modulo) operator to get the actual index of the element to show
+  // Slideshow (Carousel) Functions
+  const showCurrent = () => {
+    const itemToShow = Math.abs(counter % numItems);
+    $items.forEach((el) => el.classList.remove("show"));
+    $items[itemToShow].classList.add("show");
+  };
 
-      // remove .show from whichever element currently has it
-      [].forEach.call($items, function (el) {
-        el.classList.remove("show");
-      });
+  const nextSlide = () => {
+    counter++;
+    showCurrent();
+  };
 
-      // add .show to the one item that's supposed to have it
-      $items[itemToShow].classList.add("show");
-    };
+  const startAutoSlide = () => {
+    setInterval(nextSlide, intervalTime);
+  };
 
-    // Function to advance to the next slide
-    var nextSlide = function () {
-      counter++;
-      showCurrent();
-    };
+  // Event Listeners for Next and Previous Buttons in Slideshow (Carousel)
+  document.querySelector(".next").addEventListener("click", nextSlide, false);
+  document.querySelector(".prev").addEventListener("click", () => {
+    counter--;
+    showCurrent();
+  });
 
-    // Function to start auto-sliding
-    var startAutoSlide = function () {
-      setInterval(nextSlide, intervalTime);
-    };
+  // Shopping Cart Variables
+  let totalCount = 0;
+  const cartCounter = document.getElementById("cart-counter");
+  const cartItems = {}; // Object to store cart items
 
-    // add click events to prev & next buttons
-    document.querySelector(".next").addEventListener(
-      "click",
-      function () {
-        nextSlide();
-      },
-      false
-    );
-
-    document.querySelector(".prev").addEventListener(
-      "click",
-      function () {
-        counter--;
-        showCurrent();
-      },
-      false
-    );
-
-    // This is for the Shopping Cart logic //
-
-    let cartCount = 0;
-    const cartButton = document.getElementById("cart");
-    const cartCounter = document.getElementById("cart-counter");
-    const cartItems = {}; // Object to store cart items
-
-    // Function to update the cart count and display
-    function updateCartCount() {
-      cartCounter.textContent = cartCount;
-
-      // Show the cart counter when there are items in the cart
-      if (cartCount > 0) {
-        cartCounter.style.display = "inline-block";
-      } else {
-        cartCounter.style.display = "none";
+  // Function to update the cart count and display
+  const updateCartCount = () => {
+    totalCount = 0;
+    for (const productId in cartItems) {
+      if (cartItems.hasOwnProperty(productId)) {
+        totalCount += cartItems[productId].quantity;
       }
     }
+    cartCounter.textContent = totalCount;
+    cartCounter.style.display = totalCount >= 0 ? "flex" : "none";
+  };
 
-    // Function to add a product to the cart
-    function addToCart(productId) {
-      cartCount++; // Increase cart count
-      updateCartCount();
+  // Function to add a product to the cart
+  const addToCart = (productId) => {
+    const product = document.querySelector(`[data-product-id="${productId}"]`);
+    const productName = product.querySelector("h4").textContent;
+    const productImage = product.querySelector(".img2").src;
+    const productPrice = product.querySelector(".product-price").textContent;
 
-      // Retrieve product details using data attributes
-      const product = document.querySelector(
-        `[data-product-id="${productId}"]`
-      );
-      const productName = product.querySelector("h4").textContent;
-      const productImage = product.querySelector("img").src;
-      const productPrice = product.querySelector(".product-price").textContent;
+    if (!cartItems[productId]) {
+      cartItems[productId] = {
+        name: productName,
+        image: productImage,
+        price: productPrice,
+        quantity: 1,
+      };
+    } else {
+      cartItems[productId].quantity++;
+    }
+    updateCartCount();
+    populateCart();
+  };
 
-      // Add the product to the cartItems object
-      if (!cartItems[productId]) {
-        cartItems[productId] = {
-          name: productName,
-          image: productImage,
-          price: productPrice,
-          quantity: 1, // Start with a quantity of 1
-          clicks: 1, // Start with 1 click
-        };
-      } else {
-        // Increment quantity and clicks if the product is already in the cart
-        cartItems[productId].quantity++;
-        cartItems[productId].clicks++;
+  // Event Listeners for Adding Products to Cart
+  const emptyCart = document.getElementById("emptyCart");
+  const addToCartButtons = document.querySelectorAll(".buybuttons");
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      emptyCart.classList.add("hidden");
+      const productId = event.currentTarget.getAttribute("data-product-id");
+      addToCart(productId);
+    });
+  });
+
+  // Shopping Cart Display and Interaction Functions
+  const cartClick = document.getElementById("cart");
+  const shoppingCart = document.getElementById("shopping-cart");
+  var isHidden = true;
+  var isAnimating = false; // Flag to track if an animation is in progress
+
+  cartClick.addEventListener("click", () => {
+    if (isHidden) {
+      if (isAnimating) {
+        return; // If an animation is already in progress, do nothing
       }
-
-      // You can now access the cartItems object to manage the cart contents
-      console.log(cartItems);
+      isAnimating = true; // Set the flag to indicate that an animation is starting
+      shoppingCart.classList.remove("animate__fadeOut");
+      shoppingCart.classList.add("animate__fadeIn");
+      shoppingCart.classList.remove("hidden");
+    } else {
+      hideSideBar();
     }
 
-    // Add click event listeners to all "Add to Cart" buttons
-    const addToCartButtons = document.querySelectorAll(".fig");
-    addToCartButtons.forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const productId = event.target.getAttribute("data-product-id");
-        addToCart(productId);
-      });
-    });
+    isHidden = !isHidden;
+  });
 
-    const addToCartSButtons = document.querySelectorAll(".product-card");
-    addToCartSButtons.forEach((button2) => {
-      button2.addEventListener("click", (event) => {
-        const productId = event.target.getAttribute("data-product-id");
-        addToCart(productId);
-      });
-    });
+  // Not the best solution for continue shopping, need refactor
+  const continueShop = document.querySelector("#continuebut");
+  continueShop.addEventListener("click", () => {
+    if (isHidden) {
+      if (isAnimating) {
+        return; // If an animation is already in progress, do nothing
+      }
+    } else {
+      hideSideBar();
+    }
 
-    // Create logic for Shopping Cart page //
-    
-    const carthover = document.getElementById("cart");
-    const elementToToggle = document.getElementById("shopping-cart");
-    let isHidden = true;
-    
-    carthover.addEventListener("click", () => {
+    isHidden = !isHidden;
+  });
+
+  // Event listener to hide the sideBar when clicking outside the noSideBar area
+  const sideBar = document.querySelector(".sideBar");
+  const noSideBar = document.querySelector(".notTheSidebar");
+  noSideBar.addEventListener("click", (event) => {
+    const mouseX = event.clientX - noSideBar.getBoundingClientRect().left;
+    const mouseY = event.clientY - noSideBar.getBoundingClientRect().top;
+
+    // Check if the click is within the sideBar element
+    if (
+      mouseX < sideBar.offsetLeft ||
+      mouseX > sideBar.offsetLeft + sideBar.offsetWidth ||
+      mouseY < sideBar.offsetTop ||
+      mouseY > sideBar.offsetTop + sideBar.offsetHeight
+    ) {
       if (isHidden) {
-        elementToToggle.classList.remove('hidden');
-        document.getElementById("notHeader").style.backgroundColor = "#000000";
-        document.getElementById("notHeader").style.opacity = "0.3";
+        if (isAnimating) {
+          return; // If an animation is already in progress, do nothing
+        }
       } else {
-        elementToToggle.classList.add('hidden');
-        document.getElementById("notHeader").style.backgroundColor = "#FFFFFF";
-        document.getElementById("notHeader").style.opacity = "1.0";
+        hideSideBar();
       }
-    
-      // Toggle the visibility state
+
       isHidden = !isHidden;
+    }
+  });
+
+  // Function to hide the sideBar
+  function hideSideBar() {
+    shoppingCart.classList.add("animate__fadeOut");
+    setTimeout(() => {
+      shoppingCart.classList.remove("animate__fadeIn");
+      shoppingCart.classList.add("hidden");
+      isAnimating = false; // Reset the flag when the animation is complete
+    }, 1000); // Adjust the delay (in milliseconds) to match the transition duration
+  }
+
+  // Function to calculate the total price for a product
+  const calculateTotalPrice = (product) => {
+    const priceParts = product.price.split(" ");
+    const price = parseFloat(priceParts[0]);
+    return price * product.quantity + " DH";
+  };
+
+  // Function to populate the shopping cart
+  let subTotalPrice = document.getElementById("subTotal");
+  const populateCart = () => {
+    const cartContent = document.querySelector(".cart-content");
+    cartContent.innerHTML = "";
+    let totalPriceForAllItems = 0;
+
+    for (const productId in cartItems) {
+      if (cartItems.hasOwnProperty(productId)) {
+        const product = cartItems[productId];
+        const cartItem = document.createElement("div");
+        cartItem.classList.add(
+          "cartItem",
+          "flex",
+          "items-center",
+          "justify-between",
+          "mb-2",
+          "border",
+          "border-gray-300",
+          "p-2"
+        );
+
+        const productImageContainer = document.createElement("div");
+        productImageContainer.classList.add(
+          "w-24",
+          "h-24",
+          "bg-opacity-50",
+          "bg-gray-200",
+          "mr-4",
+          "overflow-hidden"
+        );
+
+        const productImage = document.createElement("img");
+        productImage.classList.add("w-full", "h-full", "object-cover");
+        productImage.src = product.image;
+        productImage.alt = product.name;
+
+        productImageContainer.appendChild(productImage);
+
+        const productInfo = document.createElement("div");
+        productInfo.classList.add(
+          "flex-1",
+          "flex-wrap",
+          "justify-between",
+          "flex-row"
+        );
+
+        const productName = document.createElement("p");
+        productName.classList.add(
+          "text-gray-900",
+          "text-xl",
+          "font-semibold",
+          "mb-1"
+        );
+        productName.textContent = product.name;
+
+        const productPrice = document.createElement("p");
+        productPrice.classList.add("text-gray-700", "text-lg");
+        const priceproduct = product.price.split(" ")[0];
+        productPrice.textContent = priceproduct + " DH";
+
+        // Calculate the total price using the calculateTotalPrice function
+        const totalPrice = document.createElement("p");
+        totalPrice.classList.add("text-gray-700", "text-lg");
+        totalPrice.textContent = "Total is " + calculateTotalPrice(product);
+
+        const quantityControl = document.createElement("div");
+        quantityControl.classList.add("flex", "items-center", "space-x-2");
+
+        const decreaseButton = document.createElement("button");
+        decreaseButton.textContent = "-";
+        decreaseButton.classList.add(
+          "text-white",
+          "bg-black",
+          "w-8",
+          "rounded-full",
+          "text-lg",
+          "focus:outline-none"
+        );
+        decreaseButton.addEventListener("click", () => {
+          // Decrease the quantity
+          if (product.quantity > 1) {
+            product.quantity--;
+            updateCartCount(); // Update cart count in the navbar
+            populateCart(); // Update the cart display
+          }
+        });
+
+        const quantityDisplay = document.createElement("span");
+        quantityDisplay.textContent = product.quantity;
+
+        const increaseButton = document.createElement("button");
+        increaseButton.textContent = "+";
+        increaseButton.classList.add(
+          "text-white",
+          "bg-black",
+          "w-8",
+          "rounded-full",
+          "text-lg",
+          "focus:outline-none"
+        );
+        increaseButton.addEventListener("click", () => {
+          // Increase the quantity
+          product.quantity++;
+          updateCartCount(); // Update cart count in the navbar
+          populateCart(); // Update the cart display
+        });
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "";
+        removeButton.classList.add(
+          "remove-button",
+          "fa-solid",
+          "fa-trash",
+          "fa-2xs",
+          "text-white",
+          "bg-black",
+          "w-8",
+          "rounded-full",
+          "text-lg",
+          "focus:outline-none"
+        );
+        removeButton.addEventListener("click", () => {
+          removeCartItem(productId);
+        });
+
+        const likeButton = document.createElement("button");
+        likeButton.textContent = "";
+        likeButton.classList.add(
+          "like-button",
+          "fa-solid",
+          "fa-thumbs-up",
+          "fa-2xs",
+          "text-white",
+          "bg-black",
+          "w-8",
+          "rounded-full",
+          "text-lg",
+          "focus:outline-none"
+        );
+        likeButton.addEventListener("click", () => {
+          showToastMessage("Item added to wishlist", cartContent);
+        });
+
+        const totalProductPrice = calculateTotalPrice(product);
+        totalPriceForAllItems += parseFloat(totalProductPrice.split(" ")[0]);
+        subTotalPrice.textContent = totalPriceForAllItems + " DH";
+
+        quantityControl.appendChild(decreaseButton);
+        quantityControl.appendChild(quantityDisplay);
+        quantityControl.appendChild(increaseButton);
+        quantityControl.appendChild(likeButton);
+        quantityControl.appendChild(removeButton);
+
+        // Add elements to product info
+        productInfo.appendChild(productName); // Add name to product info
+        productInfo.appendChild(productPrice); // Add price to product info
+        productInfo.appendChild(totalPrice); // Add total price to product info
+        productInfo.appendChild(quantityControl); // Add quantity
+
+        // Append elements to cartItem
+        cartItem.appendChild(productImageContainer); // Add image to product info
+        cartItem.appendChild(productInfo); // add this (name, price, total price, quantity) to SC
+
+        cartContent.appendChild(cartItem);
+      }
+    }
+  };
+
+  // Function to remove a cart item
+  const removeCartItem = (productId) => {
+    if (cartItems.hasOwnProperty(productId)) {
+      delete cartItems[productId];
+      updateCartCount();
+      populateCart();
+      if (totalCount === 0) {
+        emptyCart.classList.remove("hidden");
+        subTotalPrice.textContent = "Nothing for Now";
+      }
+    } else {
+      console.error(`Product with ID ${productId} not found in cartItems.`);
+    }
+  };
+
+  // Function to show a toast message
+  const showToastMessage = (message, container) => {
+    const toast = document.createElement("div");
+    toast.classList.add("toast");
+    toast.textContent = message;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      container.removeChild(toast);
+    }, 3000);
+  };
+
+  // Event listener to populate the cart when cart icon is clicked
+  cartClick.addEventListener("click", populateCart);
+
+  // Product Card "Add to Cart" Interaction
+  const productCards = document.querySelectorAll(".product-card");
+
+  productCards.forEach((card) => {
+    const button = card.querySelector("button");
+    card.addEventListener("mouseenter", () => {
+      button.style.display = "flex";
     });
-
-    // This is for the hide/display logic of buybuttons in Product card //
-
-    // Get all elements with the class "product-card"
-    const productCards = document.querySelectorAll(".product-card");
-
-    // Loop through each product card
-    productCards.forEach((card) => {
-      // Find the button element within the card
-      const button = card.querySelector("button");
-
-      // Add a "mouseenter" event listener to show the button
-      card.addEventListener("mouseenter", () => {
-        button.style.display = "flex";
-      });
-
-      // Add a "mouseleave" event listener to hide the button
-      card.addEventListener("mouseleave", () => {
-        button.style.display = "none";
-      });
+    card.addEventListener("mouseleave", () => {
+      button.style.display = "none";
     });
+  });
 
-    // Start auto-sliding when the DOM is ready
-    startAutoSlide();
-  })();
+  // Start auto-sliding for the slideshow
+  startAutoSlide();
 });

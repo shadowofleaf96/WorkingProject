@@ -273,6 +273,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
+  z-index: 10; /* Adjust the z-index value as needed */
   padding-top: 15px;
   padding-bottom: 15px;
   margin-left: 20%;
@@ -397,8 +398,11 @@ header {
 .cart-counter {
   background-color: red;
   color: white;
+  height: 1.6em;
+  width: 1.6em;
   border-radius: 50%;
-  padding: 2px 6px;
+  align-items: center;
+  justify-content: center;
   position: absolute; /* Position the counter absolutely within the button */
   font-size: 0.8em;
   bottom: 0;
@@ -476,6 +480,21 @@ header {
   grid-area: first;
 }
 
+.slide-from-left {
+  animation: slideLeft 0.3s ease-in-out forwards;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+}
+
 .item:nth-child(2) {
   grid-area: second;
   text-align: center;
@@ -531,7 +550,7 @@ header {
 }
 
 .dropdown {
-  background-color: whitesmoke;
+  background-color: white;
   padding: 0.5em 0;
   list-style: none;
   position: absolute;
@@ -777,6 +796,7 @@ figure.show {
   flex-direction: column; /* Stack children vertically */
 }
 .product-card div h4 {
+  font-weight: bold;
   font-size: 1.3em;
   margin-top: auto; /* Push the div to the bottom of the card */
 }
@@ -807,7 +827,7 @@ figure.show {
   position: absolute;
   border: none;
   border-radius: 5px;
-  width: 6em;
+  width: 6vw;
   margin-left: auto;
   margin-top: auto; /* Push the div to the bottom of the card */
   height: 2em;
@@ -983,7 +1003,23 @@ figure.show {
     transform: translateX(-50%);
   }
 
-  .buybuttons:hover {
-    transform: translateX(-50%) scale(1.1);
+  .fade-in-out {
+    opacity: 0;
+    animation: fade-in 1s ease-in forwards, fade-out 4s 1s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }
