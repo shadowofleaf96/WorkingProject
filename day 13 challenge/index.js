@@ -1,4 +1,3 @@
-const { ChildProcess } = require("child_process");
 const readline = require("readline");
 
 // Create the readline interface
