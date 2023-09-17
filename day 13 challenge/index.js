@@ -17,7 +17,6 @@ function selectRandomCity(cities) {
 }
 const { name, lat, lng } = selectRandomCity(cities);
 
-var result = 0
 async function getData() {
    response = await fetch(
     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current_weather=true`
@@ -27,5 +26,4 @@ async function getData() {
       " The temperature in " + name + " is " + temp.current_weather.temperature + " degrees Celsius "
     ));
 }
-
 getData();
