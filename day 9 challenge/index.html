@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="preload" as="style"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="preload" as="style"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="preload" as="style"
+    />
+    <link href="./style.css" rel="stylesheet" />
+    <link
+      href="https://allfont.net/cache/css/agency-fb.css" rel="preload" as="style"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="./images/mrtech_black.png" rel="icon" type="image/x-icon" />
+    <title>My Portfolio</title>
+  </head>
+
+  <header>
+    <nav class="bg-white fixed w-full z-20 top-0 left-0">
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <a href="#" class="flex items-center">
+          <img src="images/mrtech_white.png" class="h-8 mr-3" alt="my Logo" />
+          <span
+            class="self-center text-4xl md:text-3xl md:leading-tight font-semibold whitespace-nowrap"
+            >Shadow Of Leaf</span
+          >
+        </a>
+        <div class="flex md:order-2">
+          
+          <button
+          
+            type="button"
+            onclick="window.open('https://docs.google.com/viewer?url=https://raw.githubusercontent.com/shadowofleaf96/shadowofleaf96.github.io/master/cv.pdf', '_blank')"
+            class=" text-white transition-transform transform hover:scale-105 bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-1 py-2 ml-1 text-center md:mr-0"
+          >
+          <i class="fa fa-eye"></i>
+            Resume
+          </button>
+          <button
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            class="inline-flex items-center p-2 w-8 h-10 justify-center text-md text-black rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="items-center justify-between hidden text-md w-full md:flex md:w-auto md:order-1"
+          id="navbar-sticky"
+        >
+          <ul
+            class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-300 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
+          >
+            <li>
+              <a
+                href="#skillnm"
+                class="block py-2 pl-3 pr-4 text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 md:dark:hover:text-black rounded text-2xl link link-underline link-underline-black"
+                aria-current="page"
+                >My Skills</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projectnm"
+                class="block py-2 pl-3 pr-4 text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 md:dark:hover:text-black rounded text-2xl link link-underline link-underline-black"
+                >My Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="#aboutnm"
+                class="block py-2 pl-3 pr-4 text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 md:dark:hover:text-black rounded text-2xl link link-underline link-underline-black"
+                >About Me</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <body>
+    <div class="flex items-center justify-center h-screen relative">
+      <div class="flex flex-col-reverse md:flex-row items-center">
+        <!-- Text on the left -->
+        <div class="p-8 mb-40px md:mr-8">
+          <div class="animate__animated animate__slideInDown typing">
+            <h2 id="name" class="animate-charcter mt-0 md:mt-8">
+              Hello! i'm Mohammed Kotbi
+            </h2>
+          </div>
+          <div class="console-container animate__animated animate__slideInDown">
+            <h2 id="name2">I AM a</h2>
+            <span id="text"></span>
+            <div class="console-underscore" id="console">&#95;</div>
+          </div>
+        </div>
+
+        <!-- Image on the right -->
+        <div class="p-4 md:mr-8 ml-0 items-center">
+          <img
+            src="images/mrtech_white.png"
+            alt="my logo"
+            class="h-96 w-96 rounded-full border-2 mx-auto"
+            style="max-width: 100%; height: 100%"
+          />
+        </div>
+      </div>
+      <div id="bottoms">
+        <a href="#skillnm"><span></span>Scroll</a>
+      </div>
+    </div>
+    <div id="skills-section" class="skills-section">
+      <div class="skills-header">
+        <h2 id="skillnm" class="text-5xl">My Skills</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skills-box">
+          <div class="skills-title">
+            <div class="skills-img">
+              <img src="images/htmlcssjs.png" alt="html" class="skills-icons" />
+            </div>
+            <h3>Web Developements</h3>
+          </div>
+          <p class="skills-paragraph">HTML, CSS, JS</p>
+        </div>
+
+        <div class="skills-box">
+          <div class="skills-title">
+            <div class="skills-img">
+              <img
+                src="images/android.png"
+                alt="android"
+                class="skills-icons"
+              />
+            </div>
+            <h3>Android Developements</h3>
+          </div>
+          <p class="skills-paragraph">Java, Android Studio</p>
+        </div>
+
+        <div class="skills-box">
+          <div class="skills-title">
+            <div class="skills-img">
+              <img src="images/csharp.png" alt="csharp" class="skills-icons" />
+            </div>
+            <h3>Windows Developements</h3>
+          </div>
+          <p class="skills-paragraph">
+            C, C++, C#, Visual Studio, IntelliJ Rider
+          </p>
+        </div>
+
+        <div class="skills-box">
+          <div class="skills-title">
+            <div class="skills-img">
+              <img src="images/unity.png" alt="unity" class="skills-icons" />
+            </div>
+            <h3>Games Developements</h3>
+          </div>
+          <p class="skills-paragraph">Unity, Buildbox</p>
+        </div>
+
+        <div class="skills-box">
+          <div class="skills-title">
+            <div class="skills-img">
+              <img src="images/lineageos2.png" alt="" class="skills-icons" />
+            </div>
+            <h3>Android System Developements</h3>
+          </div>
+          <p class="skills-paragraph">AOSP, LineageOS, Linux, Recoveries...</p>
+        </div>
+
+        <div class="skills-box center-item">
+          <div class="skills-title">
+            <div class="skills-img">
+              <img src="images/youtube.png" alt="" class="skills-icons" />
+            </div>
+            <h3>Content Creator</h3>
+          </div>
+          <p class="skills-paragraph">Tech Videos, How to Videos</p>
+        </div>
+      </div>
+    </div>
+    <div class="skills-header">
+      <h2 id="projectnm" class="text-5xl">My Projects</h2>
+    </div>
+
+    <div class="my-4 mx-auto px-4 md:px-12">
+      <div
+        class="grid-container grid grid-cols-1 justify-center md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        <!-- Column -->
+        <div
+          class="grid-item flex flex-col bg-white p-4 rounded-lg shadow-md aspect-w-1"
+        >
+          <div class="image-container">
+            <img
+              alt="Placeholder"
+              class="w-full h-full object-contain mb-2"
+              src="images/challengeday.jpg"
+            />
+          </div>
+          <h1 class="text-2xl text-left lg:text-center md:whitespace-normal">
+            <a
+              class="no-underline hover:underline text-black"
+              href="https://github.com/shadowofleaf96/WorkingProject"
+            >
+              Ark-X Challenge days and Some old Projects
+            </a>
+          </h1>
+          <p class="text-lg text-gray-500 md:whitespace-normal">
+            Without those day Challenges, this portfolio will never be existed
+            <br /><br />
+          </p>
+        </div>
+        <!-- END Column -->
+
+        <div
+          class="grid-item flex flex-col bg-white p-4 rounded-lg shadow-md aspect-w-1"
+        >
+          <div class="image-container">
+            <img
+              alt="Placeholder"
+              class="w-full h-full object-contain mb-2"
+              src="images/imusic.jpg"
+            />
+          </div>
+          <h1 class="text-2xl text-left lg:text-center md:whitespace-normal">
+            <a
+              class="no-underline hover:underline text-black"
+              href="https://github.com/shadowofleaf96/Timber"
+            >
+              IMusic, TWRPBE and Moroccan Recipes and Others
+            </a>
+          </h1>
+          <p class="text-lg text-gray-500 md:whitespace-normal">
+            I begin with a calculator like every one, IMusic is music player, a
+            work of an old open source App called Timber and Others
+          </p>
+        </div>
+
+        <div
+          class="grid-item flex flex-col bg-white p-4 rounded-lg shadow-md aspect-w-1"
+        >
+          <div class="image-container">
+            <img
+              alt="Placeholder"
+              class="w-full h-full object-contain mb-2"
+              src="images/tadkir.png"
+            />
+          </div>
+          <h1 class="text-2xl text-left lg:text-center md:whitespace-normal">
+            <a
+              class="no-underline hover:underline text-black"
+              href="https://github.com/shadowofleaf96/Tadkir"
+            >
+              NetCutter and Tadkir Apps
+            </a>
+          </h1>
+          <p class="text-lg text-gray-500 md:whitespace-normal">
+            Netcutter is an app that stop Internet for certains connected
+            devices on a Wi-Fi or Ethernet, Tadkir is a App on Windows to
+            remember that reading quran is a good thing
+          </p>
+        </div>
+
+        <div
+          class="grid-item flex flex-col bg-white p-4 rounded-lg shadow-md aspect-w-1"
+        >
+          <div class="image-container">
+            <img
+              alt="Placeholder"
+              class="w-full h-full object-contain mb-2"
+              src="images/l3arbi.gif"
+            />
+          </div>
+          <h1
+            class="text-2xl text-left lg:text-center md:whitespace-normal mt-2"
+          >
+            <a
+              class="no-underline hover:underline text-black"
+              href="https://github.com/shadowofleaf96/moghamarat-L3arbi"
+            >
+              Moghamarat L3arbi
+            </a>
+          </h1>
+          <p class="text-lg text-gray-500 md:whitespace-normal">
+            this game is based on Red Runner on Github, This project is just to
+            enter unity dev world
+            <br /><br />
+          </p>
+        </div>
+
+        <div
+          class="grid-item flex flex-col bg-white p-4 rounded-lg shadow-md aspect-w-1"
+        >
+          <div class="image-container">
+            <img
+              alt="Placeholder"
+              class="w-full h-full object-contain mb-2"
+              src="images/lineageos17.1.png"
+            />
+          </div>
+          <h1
+            class="text-2xl text-left lg:text-center md:whitespace-normal mt-2"
+          >
+            <a
+              class="no-underline hover:underline text-black"
+              href="https://github.com/shadowofleaf96/android_device_umidgi_f1"
+            >
+              LineageOS 17.1 For my Phone, Shadow Kernel b2q and TWRP
+            </a>
+          </h1>
+          <p class="text-lg text-gray-500 md:whitespace-normal">
+            LineageOS is an open-source Android distribution based on AOSP,
+            means anyone can adapt lineageos to run on its device, you can see
+            my work on XDA Forums
+          </p>
+        </div>
+
+        <div
+          class="grid-item flex flex-col bg-white p-4 rounded-lg shadow-md aspect-w-1"
+        >
+          <div class="image-container">
+            <img
+              alt="Placeholder"
+              class="w-full h-full object-contain mb-2"
+              src="images/buildingpc.jpg"
+            />
+          </div>
+          <h1
+            class="text-2xl text-left lg:text-center md:whitespace-normal mt-2"
+          >
+            <a
+              class="no-underline hover:underline text-black"
+              href="https://www.youtube.com/watch?v=UXjUxxLkS50"
+            >
+              Building Budget Gaming PC and others
+            </a>
+          </h1>
+          <p class="text-lg text-gray-500 md:whitespace-normal">
+            I have A lot of videos and shorts in YouTube and TikTok, not the
+            best videos but im improving with time
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="skills-header">
+      <h2 id="aboutnm" class="text-5xl">About Me</h2>
+    </div>
+    <div class="flex">
+      <section class="flex-1">
+        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900"
+          >
+            Contact Me
+          </h2>
+          <p
+            class="mb-8 lg:mb-16 font-light text-center text-gray-500 sm:text-xl"
+          >
+            If you want to talk or have a suggestion, please don't hesitate and
+            send your message through this form
+          </p>
+          <form id="itForm" class="space-y-8">
+            <div>
+              <label
+                for="email"
+                class="block mb-2 text-lg font-medium text-gray-900"
+                >Your email</label
+              >
+              <input
+                type="email"
+                id="email"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-l rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                placeholder="example@email.com"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="subject"
+                class="block mb-2 text-lg font-medium text-gray-900"
+                >Subject</label
+              >
+              <input
+                type="text"
+                id="subject"
+                class="block p-3 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                placeholder="Your Subject"
+                required
+              />
+            </div>
+            <div class="sm:col-span-2">
+              <label
+                for="message"
+                class="block mb-2 text-lg font-medium text-gray-900"
+                >Your message</label
+              >
+              <textarea
+                id="message"
+                rows="6"
+                class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+                placeholder="Leave your message Here..."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="py-3 px-5 text-lg transition-transform transform hover:scale-105 font-medium text-center text-white rounded-lg bg-black sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300"
+            >
+              Send message
+            </button>
+          </form>
+        </div>
+      </section>
+      <section class="flex justify-center items-center">
+        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+          <section class="grid-container flex items-center lg:justify-start">
+            <img
+              src="images/mrtech_white.png"
+              alt="About Me Image"
+              class="w-48 h-48 rounded-full mr-4"
+            />
+            <div>
+              <p class="text-gray-500 text-2xl dark:text-gray-400">
+                Hey there! Thanks for checking out my profile! I'm a junior
+                developer who's passionate about diving into the world of
+                technology and coding. Although I don't have a formal IT
+                background, I'm eager to learn and grow in this field. I'm
+                currently exploring various resources to enhance my coding
+                skills and stay up-to-date with the latest industry trends. In
+                addition to coding, I enjoy spending my free time playing video
+                games and exploring different virtual worlds. If you're into
+                gaming too, feel free to connect with me!
+              </p>
+              <section class="flex social-container mt-4">
+                <ul class="flex justify-center mt-5 space-x-5">
+                  <li>
+                    <a href="#fb"
+                      ><i class="fa-brands fa-facebook fa-2xl"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#ig"
+                      ><i class="fa-brands fa-instagram fa-2xl"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#lk"
+                      ><i class="fa-brands fa-linkedin fa-2xl"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="https://www.github.com/shadowofleaf96"
+                      ><i class="fa-brands fa-github fa-2xl"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.youtube.com/channel/UC9_eEbHsL_1TL1O67Fwe7Yw"
+                      ><i class="fa-brands fa-youtube fa-2xl"></i
+                    ></a>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </body>
+
+  <footer class="bg-white rounded-lg shadow m-4">
+    <div
+      class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-center"
+    >
+      <span class="text-xl text-black text-center sm:text-center"
+        >© 2023
+        <a href="https://github.com/shadowofleaf96" class="hover:underline"
+          >Shadow Of Leaf™</a
+        >. All Rights Reserved.
+      </span>
+    </div>
+  </footer>
+
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+  ></script>
+
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("JUKxLvF8x5AE6qaE_");
+    })();
+  </script>
+
+  <script>
+    // listen to the form submission
+    document
+      .getElementById("itForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const serviceID = "service_by1g3ov";
+        const templateID = "template_vaor6ob";
+
+        // send the email here
+        emailjs.sendForm(serviceID, templateID, this).then(
+          (response) => {
+            console.log(
+              "Your Email has been sent!",
+              response.status,
+              response.text
+            );
+            alert("Your Email has been sent");
+          },
+          (error) => {
+            console.log("FAILED...", error);
+            alert("FAILED...", error);
+          }
+        );
+      });
+  </script>
+
+  <script>
+    // function([string1, string2],target id,[color1,color2])
+    consoleText(["Developer", "YouTuber", "Gamer", "PC Builder"], "text", [
+      "#FFFFFF",
+    ]);
+    function consoleText(words, id, colors) {
+      if (colors === undefined) colors = ["#FFFFFF"];
+      var visible = true;
+      var con = document.getElementById("console");
+      var letterCount = 1;
+      var x = 1;
+      var waiting = false;
+      var target = document.getElementById(id);
+      target.setAttribute("style", "color:" + colors[0]);
+      window.setInterval(function () {
+        if (letterCount === 0 && waiting === false) {
+          waiting = true;
+          target.innerHTML = words[0].substring(0, letterCount);
+          window.setTimeout(function () {
+            var usedColor = colors.shift();
+            colors.push(usedColor);
+            var usedWord = words.shift();
+            words.push(usedWord);
+            x = 1;
+            target.setAttribute("style", "color:" + colors[0]);
+            letterCount += x;
+            waiting = false;
+          }, 1200);
+        } else if (letterCount === words[0].length + 1 && waiting === false) {
+          waiting = true;
+          window.setTimeout(function () {
+            x = -1;
+            letterCount += x;
+            waiting = false;
+          }, 1200);
+        } else if (waiting === false) {
+          target.innerHTML = words[0].substring(0, letterCount);
+          letterCount += x;
+        }
+      }, 25);
+      window.setInterval(function () {
+        if (visible === true) {
+          con.className = "console-underscore hidden";
+          visible = false;
+        } else {
+          con.className = "console-underscore";
+
+          visible = true;
+        }
+      }, 200);
+    }
+  </script>
+</html>
