@@ -18,49 +18,54 @@ const cities = [
 ];
 
 // Create an HTTP server and define a callback function for handling requests
-http.createServer(async (req, res) => {
-  // Parse the URL, including query parameters
-  const reqUrl = url.parse(req.url, true);
+http
+  .createServer(async (req, res) => {
+    // Parse the URL, including query parameters
+    const reqUrl = url.parse(req.url, true);
 
-  // Check if the requested path is "/weather"
-  if (reqUrl.pathname === "/weather") {
-    // Extract the "city" parameter from the query
-    const cityName = reqUrl.query.city;
+    // Check if the requested path is "/weather"
+    if (reqUrl.pathname === "/weather") {
+      // Extract the "city" parameter from the query
+      const cityName = reqUrl.query.city;
 
-    if (cityName) {
-      // Find the selected city in the 'cities' array
-      const selectedCity = cities.find(
-        (city) => city.name.toLowerCase() === cityName.toLowerCase()
-      );
+      if (cityName) {
+        // Find the selected city in the 'cities' array
+        const selectedCity = cities.find(
+          (city) => city.name.toLowerCase() === cityName.toLowerCase()
+        );
 
-      if (selectedCity) {
-        // Extract city data (name, latitude, longitude)
-        const { name, lat, lng } = selectedCity;
+        if (selectedCity) {
+          // Extract city data (name, latitude, longitude)
+          const { name, lat, lng } = selectedCity;
 
-        // Call the 'getData' function here with the selected city's data
-        const temperature = await getData(name, lat, lng);
+          // Call the 'getData' function here with the selected city's data
+          const temperature = await getData(name, lat, lng);
 
-        // Send a successful response with the temperature
-        res.writeHead(200, { "Content-Type": "text/plain" });
-        res.end(`The temperature in ${name} is ${temperature} degrees Celsius`);
+          // Send a successful response with the temperature
+          res.writeHead(200, { "Content-Type": "text/plain" });
+          res.end(
+            `The temperature in ${name} is ${temperature} degrees Celsius`
+          );
+        } else {
+          // Send a 404 response if the city is not found
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("City not found");
+        }
       } else {
-        // Send a 404 response if the city is not found
-        res.writeHead(404, { "Content-Type": "text/plain" });
-        res.end("City not found");
+        // Send a 400 response if the "city" parameter is missing
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("City parameter is missing");
       }
     } else {
-      // Send a 400 response if the "city" parameter is missing
-      res.writeHead(400, { "Content-Type": "text/plain" });
-      res.end("City parameter is missing");
+      // Send a 404 response if the requested endpoint is not "/weather"
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Endpoint not found");
     }
-  } else {
-    // Send a 404 response if the requested endpoint is not "/weather"
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("Endpoint not found");
-  }
-})
-// Start the server on port 3000
-.listen(3000);
+  })
+  // Start the server on port 3000
+  .listen(3000, () => {
+    console.log("server is working");
+  });
 
 // Asynchronous function to fetch weather data for a given city
 async function getData(name, lat, lng) {
@@ -69,7 +74,7 @@ async function getData(name, lat, lng) {
     const response = await fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current_weather=true`
     );
-    
+
     // Parse the response as JSON and extract the current temperature
     const temp = await response.json();
 

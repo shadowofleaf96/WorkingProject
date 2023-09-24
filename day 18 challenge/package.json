@@ -1,5 +1,5 @@
 {
-  "name": "day-17-challenge",
+  "name": "day-18-challenge",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,8 +8,10 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
   "dependencies": {
-    "express": "^4.18.2",
-    "nodeman": "^1.1.2"
+    "errorhandler": "^1.5.1"
   }
 }
