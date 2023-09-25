@@ -1,12 +1,59 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
+// Define the path to your static files (images)
+const staticPath = path.join(__dirname, 'public', 'images');
+const cssPath = path.join(__dirname, 'public', 'css');
+
+// Serve static files (images) with caching headers
+app.use('/images', express.static(staticPath, {
+  maxAge: '1y', // Set the maximum age for caching (1 day in this example)
+  etag: false, // Disable ETag for simplicity (you can enable it if needed)
+}));
+
+// Serve CSS files with caching headers
+app.use('/css', express.static(cssPath, {
+  maxAge: '1y', // Set the maximum age for caching (1 day in this example)
+  etag: false, // Disable ETag for simplicity (you can enable it if needed)
+}));
+
 let products = [
-  { id: 1, name: "iPhone 12 Pro", price: 1099.99, description: "A high-end smartphone with advanced features." },
-  { id: 2, name: "Samsung Galaxy S21", price: 999.99, description: "A powerful Android smartphone with a stunning display." },
-  { id: 3, name: "Sony PlayStation 5", price: 499.99, description: "Next-gen gaming console with impressive graphics." },
-  { id: 4, name: "MacBook Pro 16", price: 2399.99, description: "A premium laptop for professionals and creatives." },
-  { id: 5, name: "DJI Mavic Air 2", price: 799.99, description: "A compact drone with high-quality camera capabilities." },
+  {
+    id: 1,
+    name: "iPhone 12 Pro",
+    price: 1099.99,
+    description: "A high-end smartphone with advanced features.",
+    image: "iPhone12pro.png" // The image filename associated with this product
+  },
+  {
+    id: 2,
+    name: "Samsung Galaxy S21",
+    price: 999.99,
+    description: "A powerful Android smartphone with a stunning display.",
+    image: "galaxys21.png" // The image filename associated with this product
+  },
+  {
+    id: 3,
+    name: "Sony PlayStation 5",
+    price: 499.99,
+    description: "Next-gen gaming console with impressive graphics.",
+    image: "play5.png" // The image filename associated with this product
+  },
+  {
+    id: 4,
+    name: "MacBook Pro 16",
+    price: 2399.99,
+    description: "A premium laptop for professionals and creatives.",
+    image: "macbookpro16.png" // The image filename associated with this product
+  },
+  {
+    id: 5,
+    name: "DJI Mavic Air 2",
+    price: 799.99,
+    description: "A compact drone with high-quality camera capabilities.",
+    image: "dji.png" // The image filename associated with this product
+  }
 ];
 
 // Logging middleware
@@ -17,9 +64,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.set('view engine', 'ejs');
-
-// Serve static files from the "public" directory
-app.use(express.static('public'));
 
 app.get("/", (req, res, next) => {
   res.render('home', { products: products });  
@@ -59,6 +103,8 @@ app.get("/products/:id", (req, res, next) => {
     return element.id === productsId;
   });
   if (matchingElement) {
+    let originalPrice = matchingElement.price;
+    let newPrice = originalPrice + (originalPrice * 0.2); // Adding 20% to the original price
     res.render('productDetails', { matchingElement: matchingElement });  
   } else {
     const error = new Error("Getting with id: Product not found");
