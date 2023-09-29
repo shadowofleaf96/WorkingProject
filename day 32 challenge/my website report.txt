@@ -1,0 +1,21 @@
+this is the security vulnerabilities that i found and i will try to fix them
+
+1 - Input validation and sanitization (xss) 
+   
+	* solution : validate and sanitize user input using express-validator
+
+2 - hardcoded password and username 
+
+	* use user-specific salted and hashed passwords
+
+3 - CSRF Protection
+
+	* implement CSRF
+
+4 - Session Management  
+
+	* use express-session
+
+5 - this we did not saw in lms but it is good (Rate limit for login attempts)
+	
+	* use express-rate-limit 

@@ -41,7 +41,7 @@ app.use(
     secret: secretKey,
     resave: false, // Do not save session data if not modified
     saveUninitialized: false, // Do not save uninitialized sessions
-    cookie: { secure: true }, // Enable secure cookies (requires HTTPS)
+    cookie: { secure: false }, // Enable secure cookies (requires HTTPS)
   })
 );
 app.use(cookieParser()); // Parse cookies
@@ -89,7 +89,6 @@ app.post("/login", loginValidator, (req, res) => {
 
 app.get("/dashboard", (req, res) => {
   // Secure the dashboard route to only allow authenticated users
-  req.session.isAuthenticated = true;
   if (req.session.isAuthenticated) {
     res.render("dashboard");
   } else {
