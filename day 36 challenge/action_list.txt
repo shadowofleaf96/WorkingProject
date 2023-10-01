@@ -1,0 +1,11 @@
+thats is the list of tasks that need to be taken to improve "Product Management API" to repect RESTful API conventions:
+
+1 - Error messages are not descreptive : the code return simple error message that can be lacking, we can improve those message to 
+provide more details about the error
+
+2 - Handling ETag for Caching : ETags are used for cache validation. If you want to enable ETag-based caching, 
+you can use the etag middleware in Express, This code generates an ETag for each product and compares it with the client's ETag to determine whether to 
+serve the cached version or the updated version.
+
+3 - use HTTPS instead o HTTP : HTTP consider Insecure, need to implement HTTPS for more security for your server
+
