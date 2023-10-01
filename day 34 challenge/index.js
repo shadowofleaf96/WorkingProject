@@ -71,19 +71,62 @@ app.set("view engine", "ejs"); // Set EJS as the view engine
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("Welcome to the Sample Vulnerable Node.js Application");
+  res.send("Welcome to Basic Authentication App ");
+});
+
+// Registration form route
+app.get("/register", (req, res) => {
+  res.render("register", { error: "" }); // Initialize error as an empty string
+});
+
+app.post("/register", formParser, (req, res) => {
+  const { username, password } = req.body;
+
+  // Check if the username already exists
+  const existingUser = users.find((user) => user.username === username);
+  if (existingUser) {
+    // Pass the error message to the template
+    return res.render("register", { error: "Username already exists" });
+  }
+
+  // Hash the password
+  const passwordHash = bcrypt.hashSync(password, saltRounds);
+
+  // Create a new user object and add it to the array
+  const newUser = {
+    id: users.length + 1,
+    username,
+    passwordHash,
+    role: "user", // You can set the role as needed
+  };
+
+  users.push(newUser);
+
+  // Redirect to a success page or login page
+  res.redirect("/login");
 });
 
 app.get("/login", csrfProtect, (req, res) => {
-  res.render("login", { csrfToken: req.csrfToken() });
+  const errors = []; // Create an empty errors array
+  res.render("login", { csrfToken: req.csrfToken(), errors }); // Pass the errors array to the template
 });
 
-app.post("/login", formParser, csrfProtect, loginLimiter, loginValidator, (req, res) => {
+app.post(
+  "/login",
+  formParser,
+  csrfProtect,
+  loginLimiter,
+  loginValidator,
+  (req, res) => {
     try {
       const { username, password } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.render("login", {
+          csrfToken: req.csrfToken(),
+          errors: "Invalid username or password",
+          errors: errors.array(), // Pass the errors array to the template
+        });
       }
       const sanitizedData = {
         name: xss(username),
@@ -96,7 +139,7 @@ app.post("/login", formParser, csrfProtect, loginLimiter, loginValidator, (req, 
         user &&
         bcrypt.compareSync(sanitizedData.password, user.passwordHash)
       ) {
-        if (username === "alice") {
+        if (username === sanitizedData.name || password === user.passwordHash) {
           req.session.isAuthenticated = true;
           req.session.username = username; // Set the username in the session
           res.redirect("/profile");
@@ -105,10 +148,11 @@ app.post("/login", formParser, csrfProtect, loginLimiter, loginValidator, (req, 
         }
       } else {
         // Redirect to '/' if the username or password is incorrect
+        res.render("login", { csrfToken: req.csrfToken(), errors: "Invalid username or password" });
         res.redirect("/login");
       }
-    } catch (error) {
-      console.error("Error during login:", error);
+    } catch (errors) {
+      console.error("Error during login:", errors);
       res.redirect("/");
     }
   }
@@ -140,14 +184,14 @@ app.get("/profile", csrfProtect, (req, res) => {
   }
 });
 
-app.get('/logout',  function (req, res, next)  {
+app.get("/logout", function (req, res, next) {
   if (req.session) {
     // delete session object
     req.session.destroy(function (err) {
       if (err) {
         return next(err);
       } else {
-        return res.redirect('/login');
+        return res.redirect("/login");
       }
     });
   }

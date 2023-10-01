@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Secure Node.js App</title>
+    <title>Registration</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -15,8 +15,7 @@
         align-items: center;
         height: 100vh;
       }
-
-      .login-container {
+      .container {
         background-color: #fff;
         padding: 20px;
         border-radius: 5px;
@@ -24,28 +23,25 @@
         width: 400px;
       }
 
-      .login-container h1 {
+      .container h1 {
         font-size: 24px;
         margin: 0;
         padding: 0;
         text-align: center;
       }
 
-      .login-form {
+      #registrationForm {
         margin-top: 20px;
       }
 
       .form-group {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
       }
-
-      .form-group label {
-        display: block;
+      label {
         font-weight: bold;
       }
-
-      .form-group input[type="text"],
-      .form-group input[type="password"] {
+      input[type="text"],
+      input[type="password"] {
         width: 100%;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -53,8 +49,7 @@
         border-radius: 3px;
         font-size: 16px;
       }
-
-      .form-group button {
+      button {
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -62,67 +57,46 @@
         padding: 10px 20px;
         cursor: pointer;
       }
-
-      .form-group button:hover {
-        background-color: #0056b3;
-      }
-
       .error {
-        color: red;
-      }
-
-      /* Add a style for red border */
-      .error-border {
-        border: 1px solid red;
+        color: #ff0000;
+        margin-top: 10px;
       }
     </style>
   </head>
   <body>
-    <div class="login-container">
-      <h1>Login</h1>
-      <form class="login-form" action="/login" method="POST">
+    <div class="container">
+      <h1>Registration</h1>
+      <!-- Display the error message if it exists -->
+      <% if (error) { %>
+      <p class="error"><%= error %></p>
+      <% } %>
+      <form id="registrationForm" action="/register" method="POST">
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">Username:</label>
           <input
             type="text"
+            placeholder="Enter a username"
             id="username"
             name="username"
-            placeholder="Enter your username"
             required
           />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Password:</label>
           <input
             type="password"
+            placeholder="Enter a password"
             id="password"
             name="password"
-            placeholder="Enter your password"
             required
-            class="<%= errors.length > 0 ? 'red-border' : '' %>"
           />
-          <!-- Display validation errors below the password input -->
-          <div class="error-message">
-            <% if (typeof errors === 'string') { %>
-            <p class="error"><%= errors %></p>
-            <% } else if (errors && errors.length > 0) { %>
-            <ul>
-              <% errors.forEach(error => { %>
-              <li class="error"><%= error.msg %></li>
-              <% }); %>
-            </ul>
-            <% } %>
-          </div>
         </div>
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <div class="form-group">
-          <button type="submit">Login</button>
+          <button type="submit">Register</button>
         </div>
       </form>
-      <form action="/register" method="GET">
-        <div class="form-group">
-          <button type="submit">Go to Registration</button>
-        </div>
+      <form action="/login" method="GET">
+        <button type="submit">Go to Login</button>
       </form>
     </div>
   </body>
