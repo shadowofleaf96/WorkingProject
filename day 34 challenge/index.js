@@ -99,8 +99,6 @@ app.post("/login", formParser, csrfProtect, loginLimiter, loginValidator, (req, 
         if (username === "alice") {
           req.session.isAuthenticated = true;
           req.session.username = username; // Set the username in the session
-          console.log(req.session)
-          console.log("Cookies:", req.cookies);
           res.redirect("/profile");
         } else {
           res.redirect("/");
