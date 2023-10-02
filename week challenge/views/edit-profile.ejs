@@ -1,0 +1,33 @@
+<!DOCTYPE html> // need time and internet to implement 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <!-- Add your CSS styles here -->
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    
+    <!-- Display any success or error messages here -->
+    <% if (successMessage) { %>
+        <p class="success"><%= successMessage %></p>
+    <% } %>
+    <% if (errorMessage) { %>
+        <p class="error"><%= errorMessage %></p>
+    <% } %>
+
+    <form action="/edit-profile" method="POST">
+        <div class="form-group">
+            <label for="newUsername">New Username</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+        </div>
+        <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+        </div>
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <a href="/profile">Back to Profile</a>
+</
