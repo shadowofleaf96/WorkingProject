@@ -4,8 +4,8 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const csurf = require("csurf");
 const bodyParser = require("body-parser");
-const userRoutes = require('./userRoutes'); // Adjust the path based on your project structure
-const {blogArticles, router} = require('./blogRoutes'); // Import only the router
+const userRoutes = require('./routes/userRoutes'); // Adjust the path based on your project structure
+const {blogArticles, router} = require('./routes/blogRoutes'); // Import only the router
 const app = express();
 
 // Define a strong secret key for sessions (consider using an environment variable)
