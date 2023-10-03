@@ -50,7 +50,8 @@ app.set("view engine", "ejs"); // Set EJS as the view engine
 app.get("/", formParser, csrfProtect, (req, res) => {
   if (req.isAuthenticated()) {
     const username = req.user.username;
-    res.render("index", { username, escapeHtml, blogArticles, csrfToken: req.csrfToken() });
+    const userRole = req.user.role; // Assuming the user role is stored in req.user.role
+    res.render("index", { username, escapeHtml, blogArticles, csrfToken: req.csrfToken(), user: { role: userRole } });
   } else {
     res.redirect("/users/login"); // Use an absolute path to redirect
   }
