@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const csurf = require("csurf");
+const path = require('path')
 const flash = require("express-flash"); // Added express-flash
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -20,6 +21,8 @@ router.use(passport.initialize());
 
 // Add the middleware to implement a session with Passport.js below:
 router.use(passport.session());
+router.use(express.static(__dirname + '/../public'));
+
 
 const saltRounds = 10; // The number of salt rounds for password hashing
 const users = [

@@ -4,123 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Secure Node.js using Passport App</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-
-      .login-container {
-        background-color: #fff;
-        margin: 0 auto;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        width: 400px;
-      }
-
-      .login-container h1 {
-        font-size: 24px;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-      }
-
-      .login-form {
-        margin-top: 20px;
-      }
-
-      .form-group {
-        margin-bottom: 15px;
-      }
-
-      .form-group label {
-        display: block;
-        font-weight: bold;
-      }
-
-      .form-group input[type="text"],
-      .form-group input[type="password"] {
-        width: 100%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        font-size: 16px;
-      }
-
-      .form-group button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        padding: 10px 20px;
-        cursor: pointer;
-      }
-
-      .form-group button:hover {
-        background-color: #0056b3;
-      }
-
-      .error {
-        color: red;
-      }
-
-      /* Add a style for red border */
-      .error-border {
-        border: 1px solid red;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <div class="login-container">
-      <h1>Login</h1>
-      <div class="error-message <%= errors && errors.length ? 'error' : '' %>">
-        <% if (errors && errors.length) { %>
+    <div class="second-container">
+      <div class="container">
+        <h1>Login</h1>
+        <div
+          class="error-message <%= errors && errors.length ? 'error' : '' %>"
+        >
+          <% if (errors && errors.length) { %>
           <ul>
             <% errors.forEach(error => { %>
-              <li><%= error.msg %></li>
+            <li><%= error.msg %></li>
             <% }); %>
           </ul>
-        <% } %>
+          <% } %>
+        </div>
+        <form class="form" action="/users/login" method="POST">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="write admin"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="write admin1234"
+              required
+            />
+          </div>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="form-group">
+            <button class="edit-blog-button" type="submit">Login</button>
+          </div>
+        </form>
+        <form action="/users/register" method="GET">
+          <div class="form-group">
+            <button class="edit-blog-button" type="submit">Go to Registration</button>
+          </div>
+        </form>
       </div>
-      <form class="login-form" action="/users/login" method="POST">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="write admin"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="write admin1234"
-            required
-          />
-        </div>
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-        <div class="form-group">
-          <button type="submit">Login</button>
-        </div>
-      </form>
-      <form action="/users/register" method="GET">
-        <div class="form-group">
-          <button type="submit">Go to Registration</button>
-        </div>
-      </form>
     </div>
   </body>
 </html>

@@ -4,134 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Profile</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-
-      .container {
-        width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .container h1 {
-        font-size: 24px;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-      }
-
-      .edit-form {
-        margin-top: 20px;
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      label {
-        display: block;
-        font-weight: bold;
-      }
-
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-      }
-
-      button[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-
-      button[type="submit"]:hover {
-        background-color: #0056b3;
-      }
-
-      .success {
-        color: green;
-        text-align: center;
-        font-weight: bold;
-      }
-
-      .error {
-        color: red;
-        text-align: center;
-        font-weight: bold;
-      }
-
-      a {
-        display: block;
-        text-align: center;
-        margin-top: 20px;
-        color: #007bff;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Edit Profile</h1>
+    <div class="second-container">
+      <div class="container">
+        <h1>Edit Profile</h1>
 
-      <!-- Display any success or error messages here -->
-      <% if (successMessage) { %>
-      <p class="success"><%= successMessage %></p>
-      <% } %> <% if (errorMessage) { %>
-      <p class="error"><%= errorMessage %></p>
-      <% } %>
+        <!-- Display any success or error messages here -->
+        <% if (successMessage) { %>
+        <p class="success"><%= successMessage %></p>
+        <% } %> <% if (errorMessage) { %>
+        <p class="error"><%= errorMessage %></p>
+        <% } %>
 
-      <form class="edit-form" action="/users/edit-profile" method="POST">
-        <div class="form-group">
-          <label for="newUsername">New Username</label>
-          <input
-            type="text"
-            placeholder="Write your new username"
-            id="newUsername"
-            name="newUsername"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="newPassword">New Password</label>
-          <input
-            type="password"
-            placeholder="Write you new password"
-            id="newPassword"
-            name="newPassword"
-            required
-          />
-        </div>
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-        <div class="form-group">
-          <button type="submit">Update Profile</button>
-        </div>
-      </form>
-      <a href="/">Back to Blogs</a>
+        <form class="edit-form" action="/users/edit-profile" method="POST">
+          <div class="form-group">
+            <label for="newUsername">New Username</label>
+            <input
+              type="text"
+              placeholder="Write your new username"
+              id="newUsername"
+              name="newUsername"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input
+              type="password"
+              placeholder="Write you new password"
+              id="newPassword"
+              name="newPassword"
+              required
+            />
+          </div>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="form-group">
+            <button type="submit">Update Profile</button>
+          </div>
+        </form>
+        <a href="/">Back to Blogs</a>
+      </div>
     </div>
   </body>
 </html>

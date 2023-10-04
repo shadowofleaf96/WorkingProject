@@ -44,6 +44,7 @@ const blogArticles = [
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
+router.use(express.static(__dirname + '/../public'));
 
 // Middleware or authentication checks if required for blog routes
 

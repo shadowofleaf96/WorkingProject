@@ -25,6 +25,9 @@ app.use(
   })
 );
 
+// Serve static files from the "public" directory
+app.use(express.static(__dirname + '/public'));
+
 app.use('/users', userRoutes);
 app.use('/blogs', router);
 
