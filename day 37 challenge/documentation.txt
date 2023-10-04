@@ -1,0 +1,11 @@
+this is a project which i changed its structure to fit the MVC Profile, i change it like this:
+
+1- our database (array) is moved to models/user.js
+
+2- our controllers, so for login register and logout, i used them in authcontroller.js, for registeration is use registerController. 
+
+3- profile(dashboard) i used profileController.js that has the ability to edit username and password
+
+4- for The views , every task(login...) has an ejs design file in Views folder
+
+diffucultes everywhere but i overcomes them all 
