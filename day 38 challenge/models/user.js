@@ -1,4 +1,3 @@
-// models/user.js
 const bcrypt = require("bcrypt");
 
 const saltRounds = 10;
@@ -24,6 +23,6 @@ function findByUsername(username) {
 
 module.exports = {
   findByUsername,
-  saltRounds, // Export the saltRounds property
-  users, // Export the users array
+  saltRounds,
+  users,
 };
