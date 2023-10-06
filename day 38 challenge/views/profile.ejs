@@ -3,6 +3,49 @@
   <head>
     <title>User Profile</title>
     <style>
+      #form {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.25rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        height: 3rem;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+      }
+      #input {
+        border: none;
+        padding: 0 1rem;
+        flex-grow: 1;
+        border-radius: 2rem;
+        margin: 0.25rem;
+      }
+      #input:focus {
+        outline: none;
+      }
+      #form > button {
+        background: #333;
+        border: none;
+        padding: 0 1rem;
+        margin: 0.25rem;
+        border-radius: 3px;
+        outline: none;
+        color: #fff;
+      }
+
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #messages > li {
+        padding: 0.5rem 1rem;
+      }
+      #messages > li:nth-child(odd) {
+        background: #efefef;
+      }
       body {
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
@@ -58,6 +101,7 @@
       .chat-messages {
         height: 100px;
         width: 80%;
+        overflow: scroll;
         border: 1px solid #ccc;
         padding: 10px;
         margin-bottom: 10px;
@@ -104,42 +148,59 @@
     <div class="chat-container">
       <div class="chat-messages" id="chat-messages"></div>
       <input type="text" id="chat-input" placeholder="Type your message..." />
-      <button id="send-button" onclick="sendMessage()">Send</button>
-      <!-- User list -->
-      <div class="user-list">
-        <h2>Connected Users</h2>
-        <ul id="user-list"></ul>
-      </div>
-      <script>
-        const socket = io();
+      <button id="send-button" type="button" onclick="sendMessage()">
+        Send
+      </button>
+    </div>
 
-        // Function to send a chat message
-        function sendMessage() {
-          const messageInput = document.getElementById("chat-input");
+    <script>
+      const socket = io();
+      // Listen for user-connected events
+      socket.on("user-connected", (data) => {
+        console.log(
+          `${data.username} connected with socket id ${data.socketId}`
+        );
+        // Display user connection notification in your UI
+        const usernameElement = document.createElement("li");
+        usernameElement.className = "user-connected";
+        usernameElement.textContent = data.username;
+        document.body.appendChild(usernameElement);
+      });
+
+      // Listen for user-disconnected events
+      socket.on("user-disconnected", (data) => {
+        console.log(
+          `${data.username} disconnected from socket id ${data.socketId}`
+        );
+        // Find the <span> element with the disconnected user's username
+        const usernameElements = document.querySelectorAll(".user-connected");
+        usernameElements.forEach((element) => {
+          if (element.textContent === data.username) {
+            element.style.fontWeight = "900" ; 
+            element.style.color = "red"; // You can choose any color you like
+          }
+        });
+      });
+
+      // Function to send a chat message
+      function sendMessage() {
+        const messageInput = document.getElementById("chat-input");
+        if (messageInput.value.length == 0) {
+          alert("Write your Message");
+        } else {
           const message = messageInput.value;
           socket.emit("message", message);
           messageInput.value = "";
         }
+      }
 
-        // Function to display incoming chat messages
-        socket.on("message", (data) => {
-          const chatMessages = document.getElementById("chat-messages");
-          const messageElement = document.createElement("div");
-          messageElement.innerText = `${data.from}: ${data.text}`;
-          chatMessages.appendChild(messageElement);
-        });
-
-        // Function to update the user list
-        socket.on("userList", (users) => {
-          const userList = document.getElementById("user-list");
-          userList.innerHTML = "";
-          users.forEach((user) => {
-            const userItem = document.createElement("li");
-            userItem.innerText = user.username;
-            userList.appendChild(userItem);
-          });
-        });
-      </script>
-    </div>
+      // Function to display incoming chat messages
+      socket.on("message", (data) => {
+        const chatMessages = document.getElementById("chat-messages");
+        const messageElement = document.createElement("div");
+        messageElement.innerText = `${data.from}: ${data.text}`;
+        chatMessages.appendChild(messageElement);
+      });
+    </script>
   </body>
 </html>

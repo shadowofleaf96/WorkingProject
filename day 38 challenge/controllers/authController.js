@@ -5,7 +5,7 @@ const csrf = require("csurf");
 const xss = require("xss");
 const bcrypt = require("bcrypt");
 
-let authenticated = ""
+let authenticated = "";
 const csrfProtect = csrf({ cookie: true });
 // Complete the serializeUser function below:
 passport.serializeUser((user, done) => {
@@ -82,12 +82,12 @@ function logout(req, res) {
   }
 }
 
-  module.exports = {
-    passport, 
-    authenticated,
-    login: loginGet,
-    postLogin: loginPost,
-    redirect: redirect,
-    logout: logout,
-    csrfProtect,
-  };
+module.exports = {
+  passport,
+  authenticated,
+  login: loginGet,
+  postLogin: loginPost,
+  redirect: redirect,
+  logout: logout,
+  csrfProtect,
+};
