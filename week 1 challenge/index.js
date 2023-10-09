@@ -1,14 +1,20 @@
 const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const passport = require("passport");
-const csurf = require("csurf");
+const multer = require("multer");
 const bodyParser = require("body-parser");
-const userRoutes = require('./routes/userRoutes'); // Adjust the path based on your project structure
-const {blogArticles, router} = require('./routes/blogRoutes'); // Import only the router
-const app = express();
+const path = require("path");
+const cors = require("cors");
+const registerController = require("./controllers/registerController");
+const authController = require("./controllers/authController");
+const profileController = require("./controllers/profileController");
+const { i18next, i18nextMiddleware } = require("./controllers/profileController");
+const { loginLimiter, loginValidator } = require("./utils/utilsFunct");
+const { csrfProtect } = require("./controllers/authController"); // Import the csrfProtect middleware from authController
+const { passport } = require("./controllers/authController");
 
-// Define a strong secret key for sessions (consider using an environment variable)
+const app = express();
+const formParser = bodyParser.urlencoded({ extended: false }); // Add formParser middleware here
 const secretKey =
   "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NTY0NzAxOCwiaWF0IjoxNjk1NjQ3MDE4fQ.SMr1eGjU5OJW2Hxa0pzZHLi2a-y-njx2CteH5e0qL5c";
 
@@ -24,70 +30,134 @@ app.use(
     },
   })
 );
-
-// Serve static files from the "public" directory
-app.use(express.static(__dirname + '/public'));
-
-app.use('/users', userRoutes);
-app.use('/blogs', router);
-
-const formParser = bodyParser.urlencoded({ extended: false });
 app.use(cookieParser());
-const csrfProtect = csurf({ cookie: true });
-app.use(function (err, req, res, next) {
-  if (err.code !== "EBADCSRFTOKEN") return next(err);
+app.use(i18nextMiddleware.handle(i18next));
 
-  // Handle CSRF token errors here
-  res.status(403);
-  res.send("Form tampered with");
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Specify the destination folder for uploaded files
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    // Use the original filename
+    cb(null, file.originalname);
+  },
 });
-// Middleware
+
+const upload = multer({ storage: storage });
+app.use(express.json());
+// Passport.js Config
 app.use(passport.initialize());
 
 // Add the middleware to implement a session with Passport.js below:
 app.use(passport.session());
-app.use(express.json());
-app.set("view engine", "ejs"); // Set EJS as the view engine
+// Define the path to your static files (images)
+const staticPath = path.join(__dirname, "public", "images");
+const cssPath = path.join(__dirname, "public", "css");
 
-// Routes
-app.get("/", formParser, csrfProtect, (req, res) => {
-  if (req.isAuthenticated()) {
-    const username = req.user.username;
-    const userRole = req.user.role; // Assuming the user role is stored in req.user.role
-    res.render("index", { username, escapeHtml, blogArticles, csrfToken: req.csrfToken(), user: { role: userRole } });
-  } else {
-    res.redirect("/users/login"); // Use an absolute path to redirect
+const locales = path.join(__dirname, "locales");
+
+// Serve static files (images) with caching headers
+app.use(
+  "/images",
+  express.static(staticPath, {
+    maxAge: "1y", // Set the maximum age for caching (1 day in this example)
+    etag: true, // Enable ETag for RESTful API
+  })
+);
+
+// Serve CSS files with caching headers
+app.use(
+  "/css",
+  express.static(cssPath, {
+    maxAge: "1y", // Set the maximum age for caching (1 day in this example)
+    etag: true, // Enable ETag for RESTful API
+  })
+);
+
+app.use(
+  "/locales",
+  express.static(locales, {
+    maxAge: "1y", // Set the maximum age for caching (1 day in this example)
+    etag: true, // Enable ETag for RESTful API
+  })
+);
+
+// Serve CSS files with caching headers
+app.use(
+  "/locales",
+  express.static(cssPath, {
+    maxAge: "1y", // Set the maximum age for caching (1 day in this example)
+    etag: true, // Enable ETag for RESTful API
+  })
+);
+
+// Error handling middleware for Multer
+app.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    // A Multer error occurred when uploading.
+    if (err.code === "LIMIT_FILE_SIZE") {
+      return res
+        .status(400)
+        .send("File size is too large. Max allowed size is 2MB.");
+    }
+    // Handle other Multer errors as needed.
+    return res.status(500).send("Internal Server Error");
+  } else if (err) {
+    // Handle other errors that are not Multer-related.
+    console.error(err);
+    return res.status(500).send("Internal Server Error");
   }
+  // If no error occurred, continue to the next middleware or route handler.
+  next();
 });
+
+app.set("view engine", "ejs"); //
+
+// Login routes
+app.get("/", csrfProtect, authController.redirect);
+app.get("/login", csrfProtect, authController.login);
+app.post(
+  "/login",
+  loginLimiter,
+  loginValidator,
+  formParser,
+  csrfProtect,
+  authController.postLogin
+);
 
 // Profile route (protected)
-app.get("/profile", formParser, csrfProtect, (req, res) => {
-  if (req.isAuthenticated()) {
-    const username = req.user.username;
-    res.render("profile", { username, escapeHtml, csrfToken: req.csrfToken() });
-  } else {
-    res.redirect("users/login");
-  }
-});
+app.get("/profile", formParser, csrfProtect, profileController.profile);
+app.get(
+  "/edit-profile",
+  formParser,
+  csrfProtect,
+  profileController.editProfile
+);
+app.post(
+  "/edit-profile",
+  upload.single("myFile"),
+  formParser,
+  csrfProtect,
+  profileController.editProfilePost
+);
 
-const escapeHtml = (unsafe) => {
-  return unsafe.replace(/[&<"']/g, (match) => {
-    switch (match) {
-      case "&":
-        return "&amp;";
-      case "<":
-        return "&lt;";
-      case ">":
-        return "&gt;";
-      case '"':
-        return "&quot;";
-      case "'":
-        return "&#39;";
-    }
-  });
-};
+// Registration routes
+app.get("/register", registerController.showRegistrationForm);
+app.post("/register", formParser, registerController.registerUser);
 
-// Server
-app.listen(3000, () => {
-  console.log("Server is working on http://127.0.0.1:3000");
+// Logout Routes
+app.get("/logout", authController.logout);
+
+// Add routes for creating, editing, and deleting blog posts
+app.get('/blogs/new', profileController.newBlog);
+app.post('/blogs/new', upload.single("myFile"), formParser, profileController.createBlog);
+app.get('/blogs/edit', profileController.editBlog);
+app.post('/blogs/edit', formParser, profileController.updateBlog);
+app.get('/blogs/delete', profileController.confirmDelete);
+app.post('/blogs/delete', formParser, profileController.deleteBlog);
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port http://localhost:${port}`);
 });

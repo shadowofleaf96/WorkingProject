@@ -1,0 +1,55 @@
+{"error":{"code":"ENOTFOUND","config":{"adapter":["xhr","http"],"env":{},"headers":{"Accept":"application/json, text/plain, */*","Accept-Encoding":"gzip, compress, deflate, br","User-Agent":"axios/1.5.1"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=ff1a83ae59474a648a902aad7abe8621","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"getaddrinfo ENOTFOUND newsapi.org","name":"Error","stack":"Error: getaddrinfo ENOTFOUND newsapi.org\n    at AxiosError.from (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\axios\\dist\\node\\axios.cjs:837:14)\n    at RedirectableRequest.handleRequestError (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\axios\\dist\\node\\axios.cjs:3016:25)\n    at RedirectableRequest.emit (node:events:514:28)\n    at eventHandlers.<computed> (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\follow-redirects\\index.js:14:24)\n    at ClientRequest.emit (node:events:514:28)\n    at TLSSocket.socketErrorListener (node:_http_client:501:9)\n    at TLSSocket.emit (node:events:514:28)\n    at emitErrorNT (node:internal/streams/destroy:151:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:116:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)","status":null},"level":"error","message":"An error occurred!","timestamp":"2023-10-07T17:27:50.769Z"}
+{"error":{"code":"ECONNRESET","config":{"adapter":["xhr","http"],"env":{},"headers":{"Accept":"application/json, text/plain, */*","Accept-Encoding":"gzip, compress, deflate, br","User-Agent":"axios/1.5.1"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=ff1a83ae59474a648a902aad7abe8621","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"read ECONNRESET","name":"Error","stack":"Error: read ECONNRESET\n    at AxiosError.from (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\axios\\dist\\node\\axios.cjs:837:14)\n    at RedirectableRequest.handleRequestError (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\axios\\dist\\node\\axios.cjs:3016:25)\n    at RedirectableRequest.emit (node:events:514:28)\n    at eventHandlers.<computed> (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\follow-redirects\\index.js:14:24)\n    at ClientRequest.emit (node:events:514:28)\n    at TLSSocket.socketErrorListener (node:_http_client:501:9)\n    at TLSSocket.emit (node:events:514:28)\n    at emitErrorNT (node:internal/streams/destroy:151:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:116:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)","status":null},"level":"error","message":"An error occurred!","timestamp":"2023-10-07T17:49:51.291Z"}
+{"error":{"code":"ECONNRESET","config":{"adapter":["xhr","http"],"env":{},"headers":{"Accept":"application/json, text/plain, */*","Accept-Encoding":"gzip, compress, deflate, br","User-Agent":"axios/1.5.1"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=ff1a83ae59474a648a902aad7abe8621","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"read ECONNRESET","name":"Error","stack":"Error: read ECONNRESET\n    at AxiosError.from (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\axios\\dist\\node\\axios.cjs:837:14)\n    at RedirectableRequest.handleRequestError (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\axios\\dist\\node\\axios.cjs:3016:25)\n    at RedirectableRequest.emit (node:events:514:28)\n    at eventHandlers.<computed> (C:\\Users\\UNK\\Desktop\\website\\day 40 challenge\\node_modules\\follow-redirects\\index.js:14:24)\n    at ClientRequest.emit (node:events:514:28)\n    at TLSSocket.socketErrorListener (node:_http_client:501:9)\n    at TLSSocket.emit (node:events:514:28)\n    at emitErrorNT (node:internal/streams/destroy:151:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:116:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)","status":null},"level":"error","message":"An error occurred!","timestamp":"2023-10-07T18:01:12.725Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:02:06.120Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:02:20.291Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:02:40.958Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:27:41.155Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:27:56.450Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:46:44.212Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:48:40.599Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T00:49:49.315Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:41:52.250Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:42:05.990Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:42:14.365Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:42:29.415Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:42:45.182Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:42:49.754Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:43:20.026Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:43:24.705Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:43:27.541Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:46:52.215Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:46:53.796Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:47:33.341Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:47:48.655Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:48:33.743Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:48:44.515Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:48:59.290Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:49:19.200Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:49:34.315Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:49:43.403Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:49:45.025Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:49:54.229Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:50:33.798Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:51:53.901Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:52:02.334Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:52:12.441Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:52:14.830Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:52:24.339Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T01:54:06.091Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T02:11:51.961Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T17:56:17.708Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T17:57:08.281Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T17:58:21.932Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T17:58:35.180Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:56:19.276Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:56:20.799Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:56:25.601Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:56:27.863Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:56:35.030Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:58:25.420Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:58:45.179Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:58:51.018Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:58:57.590Z"}
+{"error":{},"level":"error","message":"An error occurred!","timestamp":"2023-10-08T19:58:58.303Z"}
+{"error":"Invalid username or password","level":"error","message":"An error occurred!","timestamp":"2023-10-08T21:51:06.325Z"}

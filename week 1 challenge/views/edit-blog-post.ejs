@@ -2,33 +2,205 @@
 <html>
   <head>
     <title>Edit Blog Post</title>
-    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      section {
+        font-family: "Inter", sans-serif;
+      }
+      body {
+        background-color: rgb(17, 24, 39);
+      }
+    </style>
   </head>
   <body>
-    <div class="second-container">
-      <div class="container">
-        <h1>Edit Blog Post</h1>
+    <nav class="border-gray-200 dark:bg-gray-900">
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <a href="/" class="flex items-center">
+          <img class="w-24 h-12 mr-2" src="/images/logo.png" alt="logo" />
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+          ></span>
+        </a>
+        <div class="flex items-center md:order-2">
+          <button
+            type="button"
+            class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            id="user-menu-button"
+            aria-expanded="false"
+            data-dropdown-toggle="user-dropdown"
+            data-dropdown-placement="bottom"
+          >
+            <span class="sr-only">Open user menu</span>
+            <img
+              class="w-8 h-8 rounded-full"
+              src="/<%= logo %>"
+              alt="user photo"
+            />
+          </button>
+          <!-- Dropdown menu -->
+          <div
+            class="z-50 hidden my-4 text-base list-none divide-y rounded-lg shadow bg-gray-700 divide-gray-600"
+            id="user-dropdown"
+          >
+            <div class="px-4 py-3">
+              <span class="block text-sm text-white"
+                ><%= username %></span
+              >
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+              <li>
+                <a
+                  href="/profile"
+                  class="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/logout"
+                  class="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
+                  >Sign out
+                </a>
+              </li>
+            </ul>
+          </div>
+          <button
+            data-collapse-toggle="navbar-user"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-user"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          id="navbar-user"
+        >
+          <ul
+            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+          >
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Pricing</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+        <h1 class="text-2xl text-white font-bold mb-4">Edit Blog Post</h1>
         <form action="/blogs/edit" method="POST">
-          <label for="selectedPost">Select Blog Post:</label>
-          <select id="selectedPost" name="selectedPost" required>
-            <!-- Loop through the available blog posts and populate the dropdown options -->
-            <% for (let i = 0; i < blogArticles.length; i++) { %>
-            <option value="<%= blogArticles[i].id %>">
-              <%= blogArticles[i].title %>
-            </option>
-            <% } %>
-          </select>
-          <br />
+          <div class="mb-4">
+            <label
+              for="selectedPost"
+              class="block text-sm font-medium text-gray-500"
+              >Select Blog Post:</label
+            >
+            <select
+              id="selectedPost"
+              name="selectedPost"
+              required
+              class="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+            >
+              <!-- Loop through the available blog posts and populate the dropdown options -->
+              <% for (let i = 0; i < blogs.length; i++) { %>
+              <option value="<%= blogs[i].id %>"><%= blogs[i].title %></option>
+              <% } %>
+            </select>
+          </div>
           <!-- Add input fields for editing the selected blog post -->
-          <label for="editedTitle">Edited Title:</label>
-          <input type="text" id="editedTitle" name="editedTitle" required />
-          <br />
-          <label for="editedContent">Edited Content:</label>
-          <textarea id="editedContent" name="editedContent" required></textarea>
-          <br />
-          <button type="submit">Edit Blog Post</button>
+          <div class="mb-4">
+            <label
+              for="editedTitle"
+              class="block text-sm font-medium text-gray-500"
+              >Edited Title:</label
+            >
+            <input
+              type="text"
+              id="editedTitle"
+              name="editedTitle"
+              required
+              class="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              for="editedContent"
+              class="block text-sm font-medium text-gray-500"
+              >Edited Content:</label
+            >
+            <textarea
+              id="editedContent"
+              name="editedContent"
+              required
+              class="w-full px-4 py-2 mt-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          >
+            Edit Blog Post
+          </button>
         </form>
       </div>
-    </div>
-  </body>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+</body>
 </html>
