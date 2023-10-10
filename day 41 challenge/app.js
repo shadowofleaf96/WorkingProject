@@ -1,8 +1,9 @@
 const express = require("express");
 const path = require("path");
-const { MongoClient } = require("mongodb");
-const fs = require("fs");
+const { connectToMongo, getProducts } = require("./models/userDb");
 const app = express();
+
+let products = ""
 
 // Define the path to your static files (images)
 const staticPath = path.join(__dirname, "public", "images");
@@ -26,27 +27,6 @@ app.use(
   })
 );
 
-// Connection URL and database name
-const url = "mongodb://127.0.0.1:27017"; // MongoDB default URL
-const dbName = "myDb"; // Your database name
-let products = ""
-
-// Create a new MongoClient
-const client = new MongoClient(url);
-
-async function connectToMongo() {
-  try {
-    await client.connect();
-    const db = client.db(dbName);
-    console.log("Connected to MongoDB");
-    
-    products = await db.collection('productDb').find().toArray();
-    
-  } catch (err) {
-    console.error("Error connecting to MongoDB:", err);
-  }
-}
-
 connectToMongo();
 
 // Logging middleware
@@ -58,7 +38,9 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.set("view engine", "ejs");
 
-app.get("/", (req, res, next) => {
+app.get("/", async(req, res, next) => {
+  products = await getProducts(); // Get the products
+  console.log(products)
   res.render("home", { products: products });
 });
 
