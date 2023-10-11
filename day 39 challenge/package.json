@@ -1,7 +1,7 @@
 {
-    "name": "secure-node-app",
+    "name": "day 39 challenge",
     "version": "1.0.0",
-    "description": "Sample Node.js application for security challenge",
+    "description": "Use MVC in this Project",
     "main": "index.js",
     "scripts": {
         "start": "node app.js"
