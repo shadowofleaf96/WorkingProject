@@ -15,7 +15,7 @@
       <input
         id="searchInput"
         type="text"
-        class="w-96 rounded  p-2 mb-4 bg-white"
+        class="w-96 rounded p-2 mb-4 bg-white"
         placeholder="Search products..."
         oninput="updateFilters()"
       />
@@ -48,10 +48,10 @@
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
       >
         <% products.forEach(function(product) { %>
-        <li
-          class="product-card bg-white p-4 rounded shadow hover:shadow-lg transition-transform duration-300 transform hover:scale-105"
-          data-category="<%= product.category %>"
-        >
+          <li class="product-card bg-white p-4 rounded shadow hover:shadow-lg transition-transform duration-300 transform hover:scale-105"
+              data-category="<%= product.category %>"
+              data-product-name="<%= product.name %>"
+              data-product-price="<%= product.price %>">
           <div class="flex">
             <div class="w-2/3">
               <img
@@ -79,27 +79,39 @@
     </div>
     <script>
       function updateFilters() {
-          const searchQuery = document.getElementById("searchInput").value.toLowerCase();
-          const minPrice = parseFloat(document.getElementById("minPrice").value);
-          const maxPrice = parseFloat(document.getElementById("maxPrice").value);
-  
-          const productList = document.getElementById("productList").querySelectorAll(".product-card");
-  
-          productList.forEach((productCard) => {
-              const productName = productCard.querySelector("h2").textContent.toLowerCase();
-              const productPrice = parseFloat(productCard.querySelector(".text-blue-500").textContent.replace("$", ""));
-  
-              const isNameMatch = productName.includes(searchQuery);
-              const isPriceMatch = (!minPrice || productPrice >= minPrice) && (!maxPrice || productPrice <= maxPrice);
-  
+        const searchQuery = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const minPrice = parseFloat(document.getElementById("minPrice").value);
+        const maxPrice = parseFloat(document.getElementById("maxPrice").value);
+    
+        fetch(
+          `/products/search?item=${searchQuery}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+        )
+          .then((response) => response.json())
+          .then((filteredProducts) => {
+            const productList = document
+              .getElementById("productList")
+              .querySelectorAll(".product-card");
+    
+            productList.forEach((productCard) => {
+              const productName = productCard.getAttribute("data-product-name");
+              const productPrice = parseFloat(productCard.getAttribute("data-product-price"));
+    
+              const isNameMatch =
+                productName && productName.toLowerCase().includes(searchQuery);
+              const isPriceMatch =
+                (!minPrice || productPrice >= minPrice) &&
+                (!maxPrice || productPrice <= maxPrice);
+    
               if (isNameMatch && isPriceMatch) {
-                  productCard.style.display = "block";
+                productCard.style.display = "block"; // Show the product card
               } else {
-                  productCard.style.display = "none";
+                productCard.style.display = "none"; // Hide the product card
               }
+            });
           });
       }
-  </script>
-    
+    </script>    
   </body>
 </html>

@@ -62,6 +62,7 @@ app.get("/products/search", async (req, res, next) => {
     if (searchQuery) {
       query.name = { $regex: new RegExp(searchQuery, "i") };
     }
+    console.log(searchQuery)
 
     if (minPrice && maxPrice) {
       query.price = { $gte: minPrice, $lte: maxPrice };
