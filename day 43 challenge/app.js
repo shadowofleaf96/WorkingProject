@@ -79,7 +79,6 @@ app.get("/products/search", async (req, res, next) => {
     if (searchQuery) {
       query.name = { $regex: new RegExp(searchQuery, "i") };
     }
-    console.log(searchQuery);
 
     if (minPrice && maxPrice) {
       query.price = { $gte: minPrice, $lte: maxPrice };
@@ -159,8 +158,6 @@ app.post("/editProduct/:id", upload.single("image"), async (req, res) => {
   if (req.file) {
     urlToImage = req.file.originalname;
   }
-
-  console.log(urlToImage)
   
   const updatedProduct = {
     name: req.body.name,
@@ -169,7 +166,6 @@ app.post("/editProduct/:id", upload.single("image"), async (req, res) => {
     image: urlToImage,
   };
 
-  console.log(updatedProduct)
 
   try {
     const product = await schema.findOneAndUpdate(

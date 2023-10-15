@@ -12,52 +12,102 @@
     <div class="container mx-auto p-4">
       <h1 class="text-3xl font-semibold mb-4">Product List</h1>
       <!-- Search Bar -->
-      <input
-        id="searchInput"
-        type="text"
-        class="w-96 rounded p-2 mb-4 bg-white"
-        placeholder="Search products..."
-        oninput="updateFilters()"
-      />
+      <form method="GET" action="/search">
+        <input
+          type="text"
+          name="item"
+          class="w-96 rounded p-2 mb-4 bg-white"
+          placeholder="Search products..."
+        />
+      
+        <!-- Price Filter -->
+        <label for="minPrice">Min Price:</label>
+        <input
+          type="number"
+          name="minPrice"
+          min="0"
+          max="4000"
+          class="w-40 p-2 rounded mb-4 bg-white"
+          placeholder="Min Price"
+        />
+      
+        <label for="maxPrice">Max Price:</label>
+        <input
+          type="number"
+          name="maxPrice"
+          min="0"
+          max="4000"
+          class="w-40 p-2 rounded mb-4 bg-white"
+          placeholder="Max Price"
+        />
+      
+        <button
+          type="submit"
+          class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        >
+          Search
+        </button>
+      </form>
+      
 
-      <!-- Price Filter -->
-      <label for="minPrice">Min Price:</label>
-      <input
-        type="number"
-        min="0"
-        max="4000"
-        id="minPrice"
-        class="w-40 p-2 rounded mb-4 bg-white"
-        placeholder="Min Price"
-        oninput="updateFilters()"
-      />
+      <form method="GET" action="/sort">
+        <div class="flex items-center space-x-4 mb-4">
+          <label for="sort" class="text-sm font-medium text-gray-600"
+            >Sort By:</label
+          >
+          <select
+            name="sort"
+            id="sort"
+            class="bg-gray-200 py-2 px-3 border rounded-md"
+          >
+            <option value="nameAsc">Name (Ascending)</option>
+            <option value="nameDesc">Name (Descending)</option>
+            <option value="priceAsc">Price (Ascending)</option>
+            <option value="priceDesc">Price (Descending)</option>
+          </select>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          >
+            Sort
+          </button>
+        </div>
+      </form>
 
-      <label for="maxPrice">Max Price:</label>
-      <input
-        type="number"
-        min="0"
-        max="4000"
-        class="w-40 p-2 rounded mb-4 bg-white"
-        id="maxPrice"
-        placeholder="Max Price"
-        oninput="updateFilters()"
-      />
+      <form method="GET" action="/addProduct" class="mb-4">
+        <button
+          type="submit"
+          class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        >
+          Add Product
+        </button>
+      </form>
+      <form method="GET" action="/editProduct" class="mb-4">
+        <button
+          type="submit"
+          class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+        >
+          Edit/Delete Product
+        </button>
+      </form>
 
       <ul
         id="productList"
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
       >
         <% products.forEach(function(product) { %>
-          <li class="product-card bg-white p-4 rounded shadow hover:shadow-lg transition-transform duration-300 transform hover:scale-105"
-              data-category="<%= product.category %>"
-              data-product-name="<%= product.name %>"
-              data-product-price="<%= product.price %>">
+        <li
+          class="product-card bg-white p-4 rounded shadow hover:shadow-lg transition-transform duration-300 transform hover:scale-105"
+          data-category="<%= product.category %>"
+          data-product-name="<%= product.name %>"
+          data-product-price="<%= product.price %>"
+        >
           <div class="flex">
             <div class="w-2/3">
               <img
                 src="/images/<%= product.image %>"
                 alt="<%= product.name %>"
-                class="w-full h-48 object-cover rounded"
+                class="w-full h-96 object-cover rounded"
               />
             </div>
             <div class="w-1/3 p-2">
@@ -77,41 +127,5 @@
         <% }); %>
       </ul>
     </div>
-    <script>
-      function updateFilters() {
-        const searchQuery = document
-          .getElementById("searchInput")
-          .value.toLowerCase();
-        const minPrice = parseFloat(document.getElementById("minPrice").value);
-        const maxPrice = parseFloat(document.getElementById("maxPrice").value);
-    
-        fetch(
-          `/products/search?item=${searchQuery}&minPrice=${minPrice}&maxPrice=${maxPrice}`
-        )
-          .then((response) => response.json())
-          .then((filteredProducts) => {
-            const productList = document
-              .getElementById("productList")
-              .querySelectorAll(".product-card");
-    
-            productList.forEach((productCard) => {
-              const productName = productCard.getAttribute("data-product-name");
-              const productPrice = parseFloat(productCard.getAttribute("data-product-price"));
-    
-              const isNameMatch =
-                productName && productName.toLowerCase().includes(searchQuery);
-              const isPriceMatch =
-                (!minPrice || productPrice >= minPrice) &&
-                (!maxPrice || productPrice <= maxPrice);
-    
-              if (isNameMatch && isPriceMatch) {
-                productCard.style.display = "block"; // Show the product card
-              } else {
-                productCard.style.display = "none"; // Hide the product card
-              }
-            });
-          });
-      }
-    </script>    
   </body>
 </html>

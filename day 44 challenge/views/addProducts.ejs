@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <!-- Include Tailwind CSS stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-md w-96">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Add a New Product</h2>
+            
+            <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+                <div class="bg-red-100 text-red-600 p-2 mb-4 border border-red-400 rounded">
+                    <ul>
+                        <% errors.forEach(function(error) { %>
+                            <li><%= error.msg %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            <% } %>
+
+            <form method="POST" action="/addProduct" enctype="multipart/form-data" class="space-y-4">
+                <div class="flex flex-col">
+                    <label for="id" class="text-sm font-medium text-gray-600">Product ID</label>
+                    <input type="text" name="id" id="id" value="<%= nextProductId %>" class="bg-gray-200 py-2 px-3 border rounded-md" required readonly>
+                </div>
+                <div class="flex flex-col">
+                    <label for="name" class="text-sm font-medium text-gray-600">Product Name</label>
+                    <input type="text" name="name" id="name" class="py-2 px-3 border rounded-md bg-gray-200" required>
+                </div>
+                <div class="flex flex-col">
+                    <label for="price" class="text-sm font-medium text-gray-600">Price</label>
+                    <input type="number" name="price" id="price" class="py-2 px-3 border rounded-md bg-gray-200" required>
+                </div>
+                <div class="flex flex-col">
+                    <label for="description" class="text-sm font-medium text-gray-600">Description</label>
+                    <textarea name="description" id="description" class="py-2 px-3 border rounded-md bg-gray-200" required></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <div class="relative">
+                        <label for="file-upload" class="bg-blue-500 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-blue-600">
+                            Choose an Image
+                        </label>
+                        <input type="file" name="image" id="file-upload" accept="image/*" class="hidden" required>
+                    </div>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Add Product</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
