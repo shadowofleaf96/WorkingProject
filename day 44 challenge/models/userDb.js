@@ -7,9 +7,7 @@ const pdtsSchema = new mongoose.Schema({
   description: String,
   image: String
 }, {
-  collection: 'productDb',
-  versionKey: false // You should be aware of the outcome after set to false
-
+  collection: 'productDb' // Specify the collection name
 });
 
 const schema = mongoose.model('productDb', pdtsSchema);

@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
-const { mongoose, schema } = require("./models/userDb");
+const multer = require("multer");
+const { schema } = require("./models/userDb");
 const app = express();
 
 let products = "";
@@ -27,6 +28,19 @@ app.use(
   })
 );
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Specify the destination folder for uploaded files
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    // Use the original filename
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
 // Logging middleware
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
@@ -34,11 +48,24 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res, next) => {
-  const products = await schema.find()
+  const products = await schema.find();
   res.render("home", { products: products });
+});
+
+app.get("/addProduct", async (req, res, next) => {
+  const products = await schema.find();
+  // Find the latest product in the database and get its ID
+  const latestProduct = await schema.findOne().sort({ id: -1 });
+  let nextProductId = 1; // Default value if there are no existing products
+
+  if (latestProduct) {
+    nextProductId = latestProduct.id + 1;
+  }
+  res.render("addProducts", { products: products, nextProductId });
 });
 
 app.get("/products/search", async (req, res, next) => {
@@ -65,7 +92,7 @@ app.get("/products/search", async (req, res, next) => {
       }
     }
 
-    const filteredProducts = await schema.find(query).toArray();
+    const filteredProducts = await schema.find(query);
     res.send(filteredProducts);
   } catch (err) {
     console.error(err);
@@ -74,14 +101,12 @@ app.get("/products/search", async (req, res, next) => {
 });
 
 app.get("/products/:id", async (req, res, next) => {
-  const products = await schema.find()
+  const products = await schema.find();
   const productsId = parseInt(req.params.id); // Convert string to integer
   const matchingElement = products.find((element) => {
     return element.id === productsId;
   });
   if (matchingElement) {
-    let originalPrice = matchingElement.price;
-    let newPrice = originalPrice + originalPrice * 0.2; // Adding 20% to the original price
     res.render("productDetails", { matchingElement: matchingElement });
   } else {
     const error = new Error(`Product with ID ${productsId} not found`);
@@ -90,60 +115,95 @@ app.get("/products/:id", async (req, res, next) => {
   }
 });
 
-app.post("/products", async (req, res, next) => {
-  const newProduct = req.body;
-  if (!newProduct || !newProduct.name || !newProduct.price || !newProduct.description || !newProduct.image) {
-    const error = new Error(
-      "Invalid product data. Please provide a valid product name and price."
-    );
-    error.statusCode = 400;
-    next(error);
+app.post("/addProduct", upload.single("image"), async (req, res, next) => {
+  try {
+    // Find the latest product in the database and get its ID
+    const latestProduct = await schema.findOne().sort({ id: -1 });
+    let nextProductId = 1; // Default value if there are no existing products
+
+    if (latestProduct) {
+      nextProductId = latestProduct.id + 1;
+    }
+
+    const urlToImage = req.file.originalname;
+    const newProduct = {
+      id: nextProductId, // Set the new product's ID
+      name: req.body.name,
+      price: req.body.price,
+      description: req.body.description,
+      image: urlToImage,
+    };
+
+
+    // Create and save the new product in the database
+    await schema.create(newProduct);
+    const products = await schema.find();
+    res.redirect("/");
+  } catch (error) {
+    const errorMessage = "Error creating a new product.";
+    console.error(error);
+    res.status(500).send(errorMessage);
   }
-  const products = await schema
-      .create(newProduct)
-      res.send(products);
 });
 
-// Update a product by custom "id"
-app.put('/products/:id', async (req, res, next) => {
-  const customProductId = req.params.id;
-  const updatedProduct = req.body;
+app.get("/editProduct", async (req, res, next) => {
+  const products = await schema.find();
+  res.render("editProducts", { products: products });
+});
+
+// Edit product route
+app.post("/editProduct/:id", upload.single("image"), async (req, res) => {
+  const productId = req.params.id;
+  let urlToImage = "";
+
+  if (req.file) {
+    urlToImage = req.file.originalname;
+  }
+
+  console.log(urlToImage)
+  
+  const updatedProduct = {
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    image: urlToImage,
+  };
+
+  console.log(updatedProduct)
 
   try {
     const product = await schema.findOneAndUpdate(
-      { id: customProductId },
+      { id: productId },
       updatedProduct,
       { new: true }
     );
 
     if (!product) {
-      const error = new Error(`Product with ID ${customProductId} not found. Editing product failed.`);
-      error.statusCode = 404;
-      throw error;
+      res.json("product not found");
+    } else {
+      // Render the EJS template again with the updated product list
+      res.redirect("/");
     }
-
-    res.send(product);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    // Handle errors
   }
 });
 
-app.delete("/products/:id", async (req, res, next) => {
-  const productId = parseInt(req.params.id); // Convert the ID parameter to an integer.
+// Delete product route
+app.post("/deleteProduct/:id", async (req, res) => {
+  const productId = req.params.id;
+
   try {
-    const product = await schema.findOneAndDelete(
-      { id: productId },
-    );
+    const product = await schema.findOneAndDelete({ id: productId });
 
     if (!product) {
-      const error = new Error(`Product with ID ${customProductId} not found. Editing product failed.`);
-      error.statusCode = 404;
-      throw error;
+      res.json("product not found");
+    } else {
+      // Render the EJS template again with the updated product list
+      res.redirect("/");
     }
-
-    res.send(product);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    // Handle errors
   }
 });
 

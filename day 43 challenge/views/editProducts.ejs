@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Dashboard</title>
+    <!-- Include Tailwind CSS stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Product Dashboard</h2>
+            
+            <ul class="space-y-2">
+                <% products.forEach(function(product) { %>
+                    <li class="flex justify-between items-center">
+                        <form method="POST" action="/editProduct/<%= product.id %>" enctype="multipart/form-data" class="flex space-x-2">
+                            <input type="hidden" name="id" value="<%= product.id %>">
+                            <input type="text" name="name" value="<%= product.name %>" class="bg-gray-200 py-2 px-3 border rounded-md" required>
+                            <input type="number" name="price" value="<%= product.price %>" class="bg-gray-200 py-2 px-3 border rounded-md" required>
+                            <div class="flex flex-col">
+                                <textarea name="description" class="bg-gray-200 py-2 px-3 border rounded-md w-96" rows="3" required><%= product.description %></textarea>
+                            </div>
+                            <div class="flex space-x-2 items-center">
+                                <div class="flex flex-col">
+                                    <div class="relative">
+                                        <label for="file-upload-<%= product.id %>" class="bg-blue-500 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-blue-600">
+                                            Choose another Image
+                                        </label>
+                                        <input type="file" name="image" id="file-upload-<%= product.id %>" accept="image/*" class="hidden">
+                                    </div>
+                                </div>
+                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md ml-4 hover:bg-blue-600">Update</button>
+                            </div>
+                        </form>
+                        <form method="POST" action="/deleteProduct/<%= product.id %>">
+                            <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded-md ml-4 hover:bg-red-600">Delete</button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
