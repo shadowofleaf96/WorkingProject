@@ -1,9 +1,10 @@
-const { schema } = require('../models/userDb');
-let products = ""
+const { Schema } = require("../models/userDb");
+let products = "";
+sortOption = "";
 const getProducts = async (req, res, next) => {
   try {
-    products = await schema.find();
-    res.render("home", { products });
+    products = await Schema.find();
+    res.render("home", { products, sortOption });
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
@@ -11,19 +12,25 @@ const getProducts = async (req, res, next) => {
 };
 
 const getAddProduct = async (req, res, next) => {
-  products = await schema.find();
-  const latestProduct = await schema.findOne().sort({ id: -1 });
-  let nextProductId = 1;
+  try {
+    products = await Schema.find();
+    const latestProduct = await Schema.findOne().sort({ id: -1 });
+    let nextProductId = 1;
 
-  if (latestProduct) {
-    nextProductId = latestProduct.id + 1;
-  }
-  res.render("addProducts", { products, nextProductId });
+    if (latestProduct) {
+      nextProductId = latestProduct.id + 1;
+    }
+    res.render("addProducts", { products, nextProductId });
+  } catch (err) {
+    // Handle error
+    const errorMessage = "Error getting products.";
+    console.error(error);
+    res.status(500).send(errorMessage);  }
 };
 
 const postAddProduct = async (req, res, next) => {
   try {
-    const latestProduct = await schema.findOne().sort({ id: -1 });
+    const latestProduct = await Schema.findOne().sort({ id: -1 });
     let nextProductId = 1;
 
     if (latestProduct) {
@@ -39,8 +46,8 @@ const postAddProduct = async (req, res, next) => {
       image: urlToImage,
     };
 
-    await schema.create(newProduct);
-    products = await schema.find();
+    await Schema.create(newProduct);
+    products = await Schema.find();
     res.redirect("/");
   } catch (error) {
     const errorMessage = "Error creating a new product.";
@@ -50,22 +57,28 @@ const postAddProduct = async (req, res, next) => {
 };
 
 const getProductDetails = async (req, res, next) => {
-  const products = await schema.find();
+  const products = await Schema.find();
   const productId = parseInt(req.params.id);
-  const matchingElement = products.find((element) => {
-    return element.id === productId;
-  });
-  if (matchingElement) {
-    res.render("productDetails", { matchingElement });
-  } else {
-    const error = new Error(`Product with ID ${productId} not found`);
-    error.statusCode = 404;
-    next(error);
+  try {
+    const matchingElement = products.find((element) => {
+      return element.id === productId;
+    });
+    if (matchingElement) {
+      res.render("productDetails", { matchingElement });
+    } else {
+      const error = new Error(`Product with ID ${productId} not found`);
+      error.statusCode = 404;
+      next(error);
+    }
+  }catch(err){
+    const errorMessage = "Error getting Product Details.";
+    console.error(error);
+    res.status(500).send(errorMessage);
   }
 };
 
 const getEditProduct = async (req, res, next) => {
-  products = await schema.find();
+  products = await Schema.find();
   res.render("editProducts", { products });
 };
 
@@ -85,7 +98,7 @@ const postEditProduct = async (req, res) => {
   };
 
   try {
-    const product = await schema.findOneAndUpdate(
+    const product = await Schema.findOneAndUpdate(
       { id: productId },
       updatedProduct,
       { new: true }
@@ -106,7 +119,7 @@ const deleteProduct = async (req, res) => {
   const productId = req.params.id;
 
   try {
-    const product = await schema.findOneAndDelete({ id: productId });
+    const product = await Schema.findOneAndDelete({ id: productId });
 
     if (!product) {
       res.json("Product not found");

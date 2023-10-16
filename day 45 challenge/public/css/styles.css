@@ -1,0 +1,132 @@
+body {
+  background-color: hsl(30, 38%, 92%);
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 800px;
+  background-color: white;
+  height: 450px;
+  border-radius: 10px;
+}
+
+.left-side {
+    display: flex; /* Add flex container property */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+  }
+
+.left-side-image {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px 0px 0px 10px;
+  display: flex; /* Add flex container property */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.right-side {
+  margin: 20px 32px 32px 32px;
+}
+
+#product {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: hsl(228, 12%, 48%);
+}
+
+#header {
+  line-height: 1;
+  color: hsl(212, 21%, 14%);
+  margin-bottom: 25px;
+}
+
+#description {
+  font-size: 14px;
+  color: hsl(228, 12%, 48%);
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+#number-discount,
+#number-full {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#number-discount {
+  color: hsl(158, 36%, 37%);
+  margin-right: 10px;
+}
+
+#number-full {
+  font-size: 14px;
+  color: hsl(228, 12%, 48%);
+  text-decoration: line-through;
+}
+
+.cart-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: hsl(158, 36%, 37%);
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  transition: background-color 0.2s;
+  margin-top: 6px;
+}
+
+.cart-btn:hover {
+  background-color: hsl(156, 42%, 18%);
+  cursor: pointer;
+}
+
+.cart-btn > svg {
+  margin-left: -8px;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    grid-template-columns: 1fr;
+    width: 345px;
+    height: 610px;
+  }
+
+  .left-side {
+    height: 240px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  #product {
+    margin-top: 5px;
+    margin-bottom: -10px;
+  }
+
+  #description {
+    margin-top: -8px;
+    margin-bottom: -1px;
+  }
+
+  .price {
+    margin-bottom: -8px;
+  }
+
+  .cart-btn {
+    height: 48px;
+  }
+}

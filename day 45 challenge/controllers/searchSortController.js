@@ -1,4 +1,4 @@
-const { schema } = require("../models/userDb");
+const { Schema } = require("../models/userDb");
 let products = ""
 const searchProducts = async (req, res, next) => {
   const searchQuery = req.query.item;
@@ -25,7 +25,7 @@ const searchProducts = async (req, res, next) => {
       }
     }
 
-    products = await schema.find(query);
+    products = await Schema.find(query);
     res.render("home", { products: products });
   } catch (err) {
     console.error(err);
@@ -34,9 +34,10 @@ const searchProducts = async (req, res, next) => {
 };
 
 const sortProducts = async (req, res, next) => {
-  const sortOption = req.query.sort;
 
   try {
+    const sortOption = req.query.sort;
+
     const sortCriteria = {};
 
     if (sortOption === "nameAsc") {
@@ -49,9 +50,8 @@ const sortProducts = async (req, res, next) => {
       sortCriteria.price = -1;
     }
 
-    const sortedProducts = await schema.find({}).sort(sortCriteria);
-
-    res.render("home", { products: products });
+    products = await Schema.find({}).sort(sortCriteria);
+    res.render("home", { products: products, sortOption });
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
