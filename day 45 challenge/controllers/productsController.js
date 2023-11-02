@@ -28,6 +28,7 @@ const getAddProduct = async (req, res, next) => {
     res.status(500).send(errorMessage);  }
 };
 
+
 const postAddProduct = async (req, res, next) => {
   try {
     const latestProduct = await Schema.findOne().sort({ id: -1 });

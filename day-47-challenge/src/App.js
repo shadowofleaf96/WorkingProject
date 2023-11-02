@@ -34,23 +34,14 @@ export default function App() {
       </div>
       <div className="challenge2">
         <h1 id="id1">Hi {getFirstName()}</h1>
-        <p className="p1">
-         {p1()}
-        </p>
-        <p className="p2">
-        {p2()}
-        </p>
-        <p className="p3">
-        {p3()}
-        </p>
-        <p className="p4">
-        {p4()}
-        </p>
-        <p className="p5">
-        {p5()}
-        </p>
+        <p className="p1">{p1()}</p>
+        <p className="p2">{p2()}</p>
+        <p className="p3">{p3()}</p>
+        <p className="p4">{p4()}</p>
+        <p className="p5">{p5()}</p>
         <span id="id2">Thank You,</span>
         <h1 id="id3">{getName()}</h1>
+        {List()}
       </div>
     </div>
   );
@@ -87,22 +78,36 @@ function evenOrOddName() {
 }
 
 function surgieHours() {
-  return "8 Hours"
+  return "8 Hours";
 }
 
 function p1() {
-  return "I wanted to let you know as soon as possible that I will be staying home from work today."
+  return "I wanted to let you know as soon as possible that I will be staying home from work today.";
 }
 function p2() {
-  return "Unfortunately, I developed a stomach bug that has made it very difficult to get work done."
+  return "Unfortunately, I developed a stomach bug that has made it very difficult to get work done.";
 }
 function p3() {
-  return "I went to urgent care last night and was told it should subside within" + surgieHours + " hours. I do not expect to be online throughout the day."
+  return (
+    "I went to urgent care last night and was told it should subside within" +
+    surgieHours +
+    " hours. I do not expect to be online throughout the day."
+  );
 }
 function p4() {
-  return "While I do plan to be back in the office tomorrow, I’ve asked Kelly to take over for me today in case any emergencies arise. I had an important call scheduled with a supplier, but Daniel has agreed to manage the meeting."
+  return "While I do plan to be back in the office tomorrow, I’ve asked Kelly to take over for me today in case any emergencies arise. I had an important call scheduled with a supplier, but Daniel has agreed to manage the meeting.";
 }
 function p5() {
-  return "Please let me know of any additional steps you’d like me to take to ensure the day runs as smoothly as possible in my absence."
+  return "Please let me know of any additional steps you’d like me to take to ensure the day runs as smoothly as possible in my absence.";
 }
-
+function List() {
+  const index = 1;
+  return (
+    <ul>
+      <li>{2 - index}- Argentina</li>
+      <li>{index * 2}- France</li>
+      <li>{3 / index}- Croatia</li>
+      <li>{parseInt("" + index) + 3}- Morocco</li>
+    </ul>
+  );
+}

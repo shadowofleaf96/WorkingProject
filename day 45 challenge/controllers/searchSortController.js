@@ -5,7 +5,6 @@ const searchProducts = async (req, res, next) => {
   const minPrice = parseFloat(req.query.minPrice);
   const maxPrice = parseFloat(req.query.maxPrice);
 
-  console.log(searchQuery);
 
   try {
     let query = {};
